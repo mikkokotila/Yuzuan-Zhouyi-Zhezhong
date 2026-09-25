@@ -1,10 +1,17 @@
 # English Translation
 
-[Read Juan One: Qian through The Army](juan-01.md)
+[Read Juan One: Qian through The Army](juan-01.md) · [Read Juan Two: Holding Together through Great Possession](juan-02.md)
 
-This folder contains the English translation of the **first numbered juan, 卷一**, of the repository’s YiXueWang edition of 《御纂周易折中》. It includes all seven hexagrams, their hexagram and line statements, both special “Using” statements, and every accompanying commentary and editorial discussion in that juan. The preface, other front matter, and preliminary juan (卷首) have not been translated.
+This folder contains complete annotated translations of the first two numbered juan of the repository’s 易學網 edition of 《御纂周易折中》. Every hexagram statement, line statement, accompanying commentary, collected explanation, and editorial discussion in those juan is represented. **The preface, other front matter, and preliminary juan (卷首) remain untranslated.**
 
-The translation follows [the archived Chinese source](../source/juan-01.md). Difficult passages were compared selectively with the [parallel *Siku Quanshu* transcription](https://zh.wikisource.org/w/index.php?title=御纂周易折中_(四庫全書本)/卷01&oldid=759587). This is a complete annotated translation of the selected base, not a newly constituted critical edition. It has not yet received independent bilingual review or systematic leaf-by-leaf collation with historical facsimiles.
+| Juan | Hexagrams | Source blocks | Oracle statements | Endnotes |
+|---|---|---:|---:|---:|
+| [One · 卷一](juan-01.md) | 1–7: 乾 through 師 | 443 | 51 | 80 |
+| [Two · 卷二](juan-02.md) | 8–14: 比 through 大有 | 364 | 49 | 66 |
+
+The block counts include prose paragraphs, oracle statements, attribution headings, and captions; they are not counts of prose paragraphs alone. Juan One includes the two special “Using” statements for Qian and Kun. The main English text contains 33,689 words in Juan One and 27,729 in Juan Two, excluding endnotes and project front matter; the manifests specify the counting method.
+
+The stable bases are [Chinese Juan One](../source/juan-01.md) and [Chinese Juan Two](../source/juan-02.md). Doubtful passages were compared selectively with the parallel *Siku Quanshu* transcriptions: [Juan One, fixed revision 759587](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷01&oldid=759587) and [Juan Two, fixed revision 528525](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷02&oldid=528525). These are translations of the selected base, not newly constituted critical editions. **Independent bilingual review and systematic leaf-by-leaf collation with historical facsimiles have not yet been performed.**
 
 ## Reading the voices
 
@@ -23,22 +30,23 @@ The English aims to remain readable without replacing the source’s concrete im
 
 ## Endnotes and textual decisions
 
-Juan One has **80 endnotes**. They explain consequential translation choices, technical relationships among lines, classical allusions, and disagreements within the compilation. They also document corrections adopted from the parallel text, meaningful variants retained from the base, and interpretive clarifications for which no corrected witness was found. An additional Hu Bingwen gloss present in the parallel edition but absent from the base is translated explicitly as a supplementary endnote.
+The endnotes explain consequential translation choices, technical relationships among lines, classical allusions, and disagreements within the compilation. They document corrections adopted from the parallel text, meaningful variants retained from the base, and interpretive clarifications for which no corrected witness was found. Juan One also includes an explicitly supplementary translation of a Hu Bingwen gloss absent from the base.
 
-No Chinese source file has been changed. An attested correction is not silently passed off as the base reading, and an intelligible difference between editions is not automatically treated as a typo. The parallel transcription itself contains apparent errors and has not been followed indiscriminately.
+Juan Two distinguishes confirmed transcription corrections from unresolved readings. Its notes cover, among other matters, the competing interpretations of returning in Small Restraint, the third and fourth lines of Fellowship, and the final blessing of Great Possession. The latter also explains the apparent discrepancy between the compilers’ description of The Cauldron’s Judgment and its received wording.
+
+**No Chinese source file has been changed.** An attested correction is not silently passed off as the base reading, and an intelligible difference between editions is not automatically treated as a typo. The parallel transcription itself contains apparent errors and has not been followed indiscriminately.
 
 ## Coverage and review
 
-The main translation contains approximately **33,700 English words**, excluding endnotes and project front matter. All **443 source blocks** are represented once, in order. That count includes prose paragraphs, oracle statements, attribution headings, and captions; it is not a claim that all 443 are prose paragraphs. The juan contains **51 oracle statements**: seven hexagram statements, forty-two ordinary line statements, and the two special “Using” statements for Qian and Kun.
-
-Hidden Markdown comments assign each translated block an identifier such as `eee-4542:001`. The [translation manifest](../provenance/translation-juan-01.json) records the corresponding source and translation hashes. These markers do not appear in the rendered reading text, but allow later bilingual review to identify a passage precisely without disturbing the source.
+Hidden Markdown comments assign each translated block an identifier such as `eee-4542:001` or `eee-4553:001`. The [Juan One manifest](../provenance/translation-juan-01.json) and [Juan Two manifest](../provenance/translation-juan-02.json) record the corresponding source and translation hashes. These markers do not appear in the rendered reading text, but allow later bilingual review to identify a passage precisely without disturbing the source.
 
 Run the structural checks from the repository root:
 
 ```sh
-python3 scripts/validate_translation.py
+python3 scripts/validate_translation.py --juan all
+python3 scripts/validate_translation.py --juan 02 --write-report
 ```
 
-The validator checks source integrity, complete ordered coverage, commentary labels, all 51 oracle statements, endnote references, local images, and block checksums. Its [recorded report](../provenance/translation-juan-01-validation.json) concerns completeness and integrity, not a proof of semantic accuracy or literary quality.
+Without `--juan`, the validator continues to check Juan One. It checks source integrity, complete ordered coverage, commentary labels, individual oracle-statement alignment, endnote references, local images, word counts, and block checksums. The recorded reports for [Juan One](../provenance/translation-juan-01-validation.json) and [Juan Two](../provenance/translation-juan-02-validation.json) concern completeness and integrity, **not proof of semantic accuracy or literary quality**.
 
-For an intentional revision, review the changed passage against the Chinese and its endnote, then update its corresponding checksum and the overall file checksum in the manifest. Do not refresh checksums merely to suppress an unexplained validation failure. The Chinese source remains the stable reference; proposed changes to that source require a separately documented editorial decision.
+For an intentional revision, review the changed passage against the Chinese and its endnote, then update the corresponding checksums and word counts in the manifest, including its overall file checksum. Do not refresh checksums merely to suppress an unexplained validation failure. The Chinese source remains the stable reference; proposed changes to it require a separately documented editorial decision.

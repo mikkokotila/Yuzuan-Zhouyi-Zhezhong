@@ -1,27 +1,33 @@
 #!/usr/bin/env python3
-"""Validate the structure and integrity of the annotated Juan One translation.
+"""Validate the structure and integrity of the annotated translations.
 
 This checks coverage and traceability, not the semantic accuracy of English.
 Run from any directory with Python 3.10 or later; no external packages needed.
 """
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / 'provenance/translation-juan-01.json'
 
 def sha(text: str) -> str:
     return hashlib.sha256(text.encode('utf-8')).hexdigest()
+
+def words(text: str) -> int:
+    text = re.sub(r'!\[[^\]]*\]\([^)]*\)|\[\^[^\]]+\]', '', text)
+    return len(re.findall(r"\b[A-Za-z]+(?:['’-][A-Za-z]+)*\b", text))
 
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
 
-def validate() -> dict:
-    manifest = json.loads(MANIFEST.read_text(encoding='utf-8'))
+def validate(juan: str = '01') -> dict:
+    require(re.fullmatch(r'\d{2}', juan) is not None, 'Juan must have two digits')
+    manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -36,26 +42,32 @@ def validate() -> dict:
     pairs = re.findall(r'<!-- BEGIN TRANSLATION: (eee-\d+:\d{3}) -->\s*(.*?)\s*<!-- END TRANSLATION: \1 -->', english, re.S)
     ids = [identifier for identifier, _ in pairs]
     require(ids == list(originals), 'Missing, duplicated, reordered, or unmatched source block')
-    require(len(pairs) == 443, 'Expected 443 source blocks')
+    require(len(pairs) == manifest['coverage']['source_blocks'], 'Source block total differs from manifest')
     require(english.count('<!-- BEGIN TRANSLATION:') == len(pairs), 'Unmatched opening marker')
     require(english.count('<!-- END TRANSLATION:') == len(pairs), 'Unmatched closing marker')
     records = manifest['blocks']
     require([r['id'] for r in records] == ids, 'Manifest block order differs')
-    roles = [('【本義】', '**Original Meaning.**'), ('【程傳】', "**Cheng's Commentary.**"), ('【集說】', '**Collected Explanations.**'), ('【案】', '**Editorial Judgment.**')]
+    roles = [('【本義】', '**Original Meaning.**'), ('【程傳】', "**Cheng's Commentary.**"), ('【集說】', '**Collected Explanations.**'), ('【案】', '**Editorial Judgment.**'), ('【總論】', '**General Discussion')]
     for (identifier, translated), record in zip(pairs, records):
         original = originals[identifier]
         require(sha(original) == record['source_sha256'], f'{identifier}: source block changed')
         require(sha(translated) == record['translation_sha256'], f'{identifier}: English block changed')
         require(bool(translated.strip()), f'{identifier}: empty translation')
+        require(words(translated) == record['english_words'], f'{identifier}: word count differs')
+        is_oracle = original.startswith('**') and '，' in original.split('**')[1]
+        require(translated.startswith('### ') == is_oracle, f'{identifier}: oracle statement alignment differs')
         for cn_label, en_label in roles:
             if original.startswith(cn_label):
                 require(translated.startswith(en_label), f'{identifier}: commentator attribution mismatch')
     main = '\n\n'.join(text for _, text in pairs)
-    require(len(re.findall(r'^### ', main, re.M)) == 51, 'Expected all 51 oracle statements')
+    require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
+    oracle_count = sum(b.startswith('**') and '，' in b.split('**')[1] for b in originals.values())
+    require(len(re.findall(r'^### ', main, re.M)) == oracle_count == manifest['coverage']['oracle_statements'], 'Missing or extra oracle statement')
+    require(len(source_pages) == manifest['coverage']['hexagrams'] == len(manifest['sections']), 'Hexagram count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
     definitions = re.findall(r'^\[\^([^\]]+)\]:', english, re.M)
-    require(len(definitions) == len(set(definitions)) == 80, 'Expected 80 unique endnotes')
+    require(len(definitions) == len(set(definitions)) == manifest['coverage']['endnotes'], 'Endnote count or uniqueness differs')
     require(set(refs) == set(definitions), 'Unresolved or unused endnote')
     image_pattern = r'!\[[^\]]*\]\(([^)]+)\)'
     source_images = re.findall(image_pattern, source)
@@ -66,20 +78,33 @@ def validate() -> dict:
     for section in manifest['sections']:
         count = sum(identifier.startswith(f"eee-{section['page']}:") for identifier in ids)
         require(count == section['blocks'], f"Section {section['page']} has wrong block count")
+        section_words = sum(words(text) for identifier, text in pairs if identifier.startswith(f"eee-{section['page']}:"))
+        require(section_words == section['english_words'], f"Section {section['page']} word count differs")
     return {
         'status': 'passed', 'translation': manifest['translation'],
         'translation_sha256': sha(english), 'source_sha256': sha(source),
         **manifest['coverage'], 'local_images': len(english_images),
         'checks': ['Source unchanged', 'All source blocks represented once and in order',
-                   'Commentarial role labels aligned', 'All oracle statements present',
+                   'Commentarial role labels aligned', 'All oracle statements present and aligned',
                    'All endnote references resolved', 'Source images retained in order',
-                   'Block-level and file-level checksums verified'],
+                   'Block-level and file-level checksums verified', 'Word counts recomputed'],
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'
     }
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    available = sorted(p.stem.rsplit('-', 1)[-1] for p in (ROOT / 'provenance').glob('translation-juan-[0-9][0-9].json'))
+    parser.add_argument('--juan', default='01', choices=available + ['all'], help='Juan to validate (default: 01); use all for every manifest')
+    parser.add_argument('--write-report', action='store_true', help='Write validated JSON reports to provenance/')
+    args = parser.parse_args()
     try:
-        print(json.dumps(validate(), ensure_ascii=False, indent=2))
+        selected = available if args.juan == 'all' else [args.juan]
+        reports = [validate(juan) for juan in selected]
+        if args.write_report:
+            for juan, report in zip(selected, reports):
+                path = ROOT / f'provenance/translation-juan-{juan}-validation.json'
+                path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        print(json.dumps(reports[0] if len(reports) == 1 else reports, ensure_ascii=False, indent=2))
     except (OSError, ValueError, KeyError) as error:
         print(f'Validation failed: {error}', file=sys.stderr)
         sys.exit(1)
