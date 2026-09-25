@@ -84,3 +84,9 @@ The fetcher is cached, rate-limited, and restricted to the selected book's navig
 For translation work, keep translated passages separate from this source corpus.
 The `eee-<page-id>` anchors and `BEGIN SOURCE` / `END SOURCE` markers provide stable
 links back to individual source pages and support alignment without altering the base text.
+
+## English Translation
+
+[**Juan One — Qian through The Army**](translation/juan-01.md) is available as a complete annotated English translation, with approximately 33,700 words of translated text and 80 endnotes. It preserves the distinct commentarial voices and documents textual corrections and significant alternative readings. The preface and preliminary juan have not yet been translated.
+
+See [translation conventions and review status](translation/README.md), the [source-alignment manifest](provenance/translation-juan-01.json), and the [validation report](provenance/translation-juan-01-validation.json). The Chinese source corpus is unchanged.

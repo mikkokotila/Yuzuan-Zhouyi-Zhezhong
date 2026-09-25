@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-01.md",
+  "translation_sha256": "4735ff45e483a5f82612aae62be83628ba42149da5e4e319d0e0431a627a11b5",
+  "source_sha256": "61efb8478ca293310f1e126bc00e458e3f67bfcd89bfe35e6656465d19ab73b7",
+  "hexagrams": 7,
+  "source_blocks": 443,
+  "oracle_statements": 51,
+  "endnotes": 80,
+  "main_text_english_words": 33689,
+  "local_images": 6,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All oracle statements present",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
