@@ -96,3 +96,5 @@ See [translation conventions and review status](translation/README.md), the [sou
 [Juan Three: Modesty through Adornment](translation/juan-03.md) is translated in full, with 28,045 words of translated text and 92 endnotes. It covers 謙、豫、隨、蠱、臨、觀、噬嗑、賁. All 414 source blocks and 56 oracle statements are aligned in the [manifest](provenance/translation-juan-03.json) and checked in the [validation report](provenance/translation-juan-03-validation.json). The Chinese source and earlier translations remain unchanged.
 
 [Juan Four: Splitting Apart through Clinging](translation/juan-04.md) is translated in full, with 27,393 words of main text and 90 endnotes. It covers 剝、復、无妄、大畜、頤、大過、坎、離. The Chinese source, images, and earlier translations remain unchanged.
+
+[Juan Five: Influence through Limping](translation/juan-05.md) is translated in full, with 28,424 words of main text and 91 endnotes. It opens the Lower Classic and covers 咸、恒、遯、大壯、晉、明夷、家人、睽、蹇. The Chinese source and previous translations remain unchanged.
