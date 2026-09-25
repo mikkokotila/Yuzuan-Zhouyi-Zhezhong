@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "checked_at": "2026-09-25T11:44:12.026501+00:00",
+  "numbered_juans": 22,
+  "preliminary_juan": 1,
+  "front_matter_files": 1,
+  "markdown_files": 24,
+  "source_pages": 156,
+  "distinct_images": 127,
+  "nonspace_characters": 591756,
+  "han_characters": 486067,
+  "image_occurrences": 2173,
+  "snapshot_sha256": "e8390a795cf538b5ff4dabd9017a7e95e2e3fb3a13d0e0ec3fcd004eda36f65f",
+  "checks": [
+    "All content pages assigned exactly once",
+    "All 23 juans present",
+    "All front matter retained",
+    "Text matches archived HTML after rendering",
+    "Image order and local targets preserved",
+    "File and asset SHA-256 checksums"
+  ],
+  "scope": "Complete capture of the selected web transcription, not a critical collation."
+}
