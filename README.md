@@ -100,3 +100,5 @@ See [translation conventions and review status](translation/README.md), the [sou
 [Juan Five: Influence through Limping](translation/juan-05.md) is translated in full, with 28,424 words of main text and 91 endnotes. It opens the Lower Classic and covers 咸、恒、遯、大壯、晉、明夷、家人、睽、蹇. The Chinese source and previous translations remain unchanged.
 
 [Juan Six: Release through Oppression](translation/juan-06.md) is translated in full, with 28,316 words of main text and 80 endnotes. It covers 解、損、益、夬、姤、萃、升、困. All 434 source blocks are aligned, including the separately presented portions of Decrease’s Judgment. The Chinese source and previous translations remain unchanged.
+
+[Juan Seven: The Well through Abundance](translation/juan-07.md) is translated in full, with 30,612 words of main text and 87 endnotes. It covers 井、革、鼎、震、艮、漸、歸妹、豐. All 424 source blocks, 56 oracle statements, and eight images are preserved in order. The Chinese source and earlier translations remain unchanged.
