@@ -94,3 +94,5 @@ See [translation conventions and review status](translation/README.md), the [sou
 [Juan Two: Holding Together through Great Possession](translation/juan-02.md) is now also translated in full, with 66 endnotes. It covers 比、小畜、履、泰、否、同人、大有. The Chinese source remains unchanged.
 
 [Juan Three: Modesty through Adornment](translation/juan-03.md) is translated in full, with 28,045 words of translated text and 92 endnotes. It covers 謙、豫、隨、蠱、臨、觀、噬嗑、賁. All 414 source blocks and 56 oracle statements are aligned in the [manifest](provenance/translation-juan-03.json) and checked in the [validation report](provenance/translation-juan-03-validation.json). The Chinese source and earlier translations remain unchanged.
+
+[Juan Four: Splitting Apart through Clinging](translation/juan-04.md) is translated in full, with 27,393 words of main text and 90 endnotes. It covers 剝、復、无妄、大畜、頤、大過、坎、離. The Chinese source, images, and earlier translations remain unchanged.

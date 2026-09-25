@@ -1,18 +1,19 @@
 # English Translation
 
-[Read Juan One: Qian through The Army](juan-01.md) · [Read Juan Two: Holding Together through Great Possession](juan-02.md) · [Read Juan Three: Modesty through Adornment](juan-03.md)
+[Read Juan One: Qian through The Army](juan-01.md) · [Read Juan Two: Holding Together through Great Possession](juan-02.md) · [Read Juan Three: Modesty through Adornment](juan-03.md) · [Read Juan Four: Splitting Apart through Clinging](juan-04.md)
 
-This folder contains complete annotated translations of the first three numbered juan of the repository’s 易學網 edition of 《御纂周易折中》. Every hexagram statement, line statement, accompanying commentary, collected explanation, and editorial discussion in those juan is represented. **The preface, other front matter, and preliminary juan (卷首) remain untranslated.**
+This folder contains complete annotated translations of the first four numbered juan of the repository’s 易學網 edition of 《御纂周易折中》. Every hexagram statement, line statement, accompanying commentary, collected explanation, and editorial discussion in those juan is represented. **The preface, other front matter, and preliminary juan (卷首) remain untranslated.**
 
 | Juan | Hexagrams | Source blocks | Oracle statements | Endnotes |
 |---|---|---:|---:|---:|
 | [One · 卷一](juan-01.md) | 1–7: 乾 through 師 | 443 | 51 | 80 |
 | [Two · 卷二](juan-02.md) | 8–14: 比 through 大有 | 364 | 49 | 66 |
 | [Three · 卷三](juan-03.md) | 15–22: 謙 through 賁 | 414 | 56 | 92 |
+| [Four · 卷四](juan-04.md) | 23–30: 剝 through 離 | 426 | 56 | 90 |
 
-The block counts include prose paragraphs, oracle statements, attribution headings, and captions; they are not counts of prose paragraphs alone. Juan One includes the two special “Using” statements for Qian and Kun. The main English text contains 33,689 words in Juan One, 27,729 in Juan Two, and 28,045 in Juan Three, excluding endnotes and project front matter; the manifests specify the counting method.
+The block counts include prose paragraphs, oracle statements, attribution headings, and captions; they are not counts of prose paragraphs alone. Juan One includes the two special “Using” statements for Qian and Kun. The main English text contains 33,689 words in Juan One, 27,729 in Juan Two, 28,045 in Juan Three, and 27,393 in Juan Four, excluding endnotes and project front matter; the manifests specify the counting method.
 
-The stable bases are [Chinese Juan One](../source/juan-01.md), [Chinese Juan Two](../source/juan-02.md), and [Chinese Juan Three](../source/juan-03.md). Doubtful passages were compared selectively with the parallel *Siku Quanshu* transcriptions: [Juan One, fixed revision 759587](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷01&oldid=759587), [Juan Two, fixed revision 528525](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷02&oldid=528525), and [Juan Three, fixed revision 528531](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷03&oldid=528531). These are translations of the selected base, not newly constituted critical editions. **Independent bilingual review and systematic leaf-by-leaf collation with historical facsimiles have not yet been performed.**
+The stable bases are [Chinese Juan One](../source/juan-01.md), [Chinese Juan Two](../source/juan-02.md), [Chinese Juan Three](../source/juan-03.md), and [Chinese Juan Four](../source/juan-04.md). Doubtful passages were compared selectively with the parallel *Siku Quanshu* transcriptions: [Juan One, fixed revision 759587](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷01&oldid=759587), [Juan Two, fixed revision 528525](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷02&oldid=528525), [Juan Three, fixed revision 528531](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷03&oldid=528531), and [Juan Four, fixed revision 759588](https://zh.wikisource.org/w/index.php?title=御纂周易折中_%28四庫全書本%29/卷04&oldid=759588). These are translations of the selected base, not newly constituted critical editions. **Independent bilingual review and systematic leaf-by-leaf collation with historical facsimiles have not yet been performed.**
 
 ## Reading the voices
 
@@ -37,19 +38,21 @@ Juan Two distinguishes confirmed transcription corrections from unresolved readi
 
 Juan Three has 92 endnotes covering the distinct readings of modesty, following, inherited decay, ritual preparation, judicial imagery, and adornment. They distinguish corrections supported by the parallel transcription from intelligible variants retained in the base. An apparent error shared by both transcriptions—the top “nine” in Modesty—is explicitly identified rather than passed off as an attested correction. The uncertain attribution 集氏 is retained, following the book’s own commentator index.
 
+Juan Four has 90 endnotes addressing, among other matters, the seven-day return, conflicting interpretations of plowing and harvesting, carriage fittings, the direction of nourishment, the sagging ridgepole, repeated danger, and successive light. Corrections include a missing negative in Nourishment’s final commentary. A sequence inversion shared by both transcriptions is identified as a contextual correction, not an attested alternative. The historical illness oracle is preserved but explicitly distinguished from present-day treatment guidance.
+
 **No Chinese source file has been changed.** An attested correction is not silently passed off as the base reading, and an intelligible difference between editions is not automatically treated as a typo. The parallel transcription itself contains apparent errors and has not been followed indiscriminately.
 
 ## Coverage and review
 
-Hidden Markdown comments assign each translated block an identifier such as `eee-4542:001` or `eee-4553:001`. The [Juan One manifest](../provenance/translation-juan-01.json), [Juan Two manifest](../provenance/translation-juan-02.json), and [Juan Three manifest](../provenance/translation-juan-03.json) record the corresponding source and translation hashes. These markers do not appear in the rendered reading text, but allow later bilingual review to identify a passage precisely without disturbing the source.
+Hidden Markdown comments assign each translated block an identifier such as `eee-4542:001` or `eee-4553:001`. The [Juan One manifest](../provenance/translation-juan-01.json), [Juan Two manifest](../provenance/translation-juan-02.json), [Juan Three manifest](../provenance/translation-juan-03.json), and [Juan Four manifest](../provenance/translation-juan-04.json) record the corresponding source and translation hashes. These markers do not appear in the rendered reading text, but allow later bilingual review to identify a passage precisely without disturbing the source.
 
 Run the structural checks from the repository root:
 
 ```sh
 python3 scripts/validate_translation.py --juan all
-python3 scripts/validate_translation.py --juan 03 --write-report
+python3 scripts/validate_translation.py --juan 04 --write-report
 ```
 
-Without `--juan`, the validator continues to check Juan One. It checks source integrity, complete ordered coverage, commentary labels, individual oracle-statement alignment, endnote references, local images, word counts, and block checksums. The recorded reports for [Juan One](../provenance/translation-juan-01-validation.json), [Juan Two](../provenance/translation-juan-02-validation.json), and [Juan Three](../provenance/translation-juan-03-validation.json) concern completeness and integrity, **not proof of semantic accuracy or literary quality**.
+Without `--juan`, the validator continues to check Juan One. It checks source integrity, complete ordered coverage, commentary labels, individual oracle-statement alignment, endnote references, local images, word counts, and block checksums. The recorded reports for [Juan One](../provenance/translation-juan-01-validation.json), [Juan Two](../provenance/translation-juan-02-validation.json), [Juan Three](../provenance/translation-juan-03-validation.json), and [Juan Four](../provenance/translation-juan-04-validation.json) concern completeness and integrity, **not proof of semantic accuracy or literary quality**.
 
 For an intentional revision, review the changed passage against the Chinese and its endnote, then update the corresponding checksums and word counts in the manifest, including its overall file checksum. Do not refresh checksums merely to suppress an unexplained validation failure. The Chinese source remains the stable reference; proposed changes to it require a separately documented editorial decision.
