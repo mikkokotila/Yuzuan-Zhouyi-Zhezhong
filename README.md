@@ -98,3 +98,5 @@ See [translation conventions and review status](translation/README.md), the [sou
 [Juan Four: Splitting Apart through Clinging](translation/juan-04.md) is translated in full, with 27,393 words of main text and 90 endnotes. It covers 剝、復、无妄、大畜、頤、大過、坎、離. The Chinese source, images, and earlier translations remain unchanged.
 
 [Juan Five: Influence through Limping](translation/juan-05.md) is translated in full, with 28,424 words of main text and 91 endnotes. It opens the Lower Classic and covers 咸、恒、遯、大壯、晉、明夷、家人、睽、蹇. The Chinese source and previous translations remain unchanged.
+
+[Juan Six: Release through Oppression](translation/juan-06.md) is translated in full, with 28,316 words of main text and 80 endnotes. It covers 解、損、益、夬、姤、萃、升、困. All 434 source blocks are aligned, including the separately presented portions of Decrease’s Judgment. The Chinese source and previous translations remain unchanged.
