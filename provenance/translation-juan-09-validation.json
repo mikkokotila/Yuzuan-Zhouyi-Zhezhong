@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-09.md",
+  "translation_sha256": "887d87cb0efd35adf1b37cbe424c60d85a67dcfc9eb9bb61cb96caa075e895bc",
+  "source_sha256": "5e2871c453f94a6dae4d6ebc8f68c2df10989cb0e79503bbf594a50ff67cc94b",
+  "hexagrams": 30,
+  "source_pages": 1,
+  "source_blocks": 520,
+  "tuan_passages": 84,
+  "endnotes": 102,
+  "main_text_english_words": 28217,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Tuan passages and hexagram sections present and aligned",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}

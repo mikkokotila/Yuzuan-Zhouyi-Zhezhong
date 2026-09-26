@@ -24,10 +24,19 @@ def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
 
+def primary_source_block(original: str, kind: str) -> bool:
+    """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'tuan_commentary':
+        return original.startswith('**') and re.fullmatch(r'\*\*彖[上下]傳\*\*', original) is None
+    return original.startswith('**') and '，' in original.split('**')[1]
+
 def validate(juan: str = '01') -> dict:
     require(re.fullmatch(r'\d{2}', juan) is not None, 'Juan must have two digits')
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    kind = manifest.get('text_kind', 'hexagram_oracles')
+    require(kind in {'hexagram_oracles', 'tuan_commentary'}, 'Unsupported translation text kind')
+    is_tuan = kind == 'tuan_commentary'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -54,16 +63,18 @@ def validate(juan: str = '01') -> dict:
         require(sha(translated) == record['translation_sha256'], f'{identifier}: English block changed')
         require(bool(translated.strip()), f'{identifier}: empty translation')
         require(words(translated) == record['english_words'], f'{identifier}: word count differs')
-        is_oracle = original.startswith('**') and '，' in original.split('**')[1]
-        require(translated.startswith('### ') == is_oracle, f'{identifier}: oracle statement alignment differs')
+        is_primary = primary_source_block(original, kind)
+        require(translated.startswith('### ') == is_primary, f'{identifier}: primary text alignment differs')
         for cn_label, en_label in roles:
             if original.startswith(cn_label):
                 require(translated.startswith(en_label), f'{identifier}: commentator attribution mismatch')
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
-    oracle_count = sum(b.startswith('**') and '，' in b.split('**')[1] for b in originals.values())
-    require(len(re.findall(r'^### ', main, re.M)) == oracle_count == manifest['coverage']['oracle_statements'], 'Missing or extra oracle statement')
-    require(len(source_pages) == manifest['coverage']['hexagrams'] == len(manifest['sections']), 'Hexagram count differs')
+    primary_count = sum(primary_source_block(b, kind) for b in originals.values())
+    count_key = 'tuan_passages' if is_tuan else 'oracle_statements'
+    require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
+    page_key = 'source_pages' if is_tuan else 'hexagrams'
+    require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
     definitions = re.findall(r'^\[\^([^\]]+)\]:', english, re.M)
@@ -80,12 +91,31 @@ def validate(juan: str = '01') -> dict:
         require(count == section['blocks'], f"Section {section['page']} has wrong block count")
         section_words = sum(words(text) for identifier, text in pairs if identifier.startswith(f"eee-{section['page']}:"))
         require(section_words == section['english_words'], f"Section {section['page']} word count differs")
+    if is_tuan:
+        chapters = manifest['chapters']
+        require(len(chapters) == manifest['coverage']['hexagrams'], 'Hexagram section count differs')
+        numbers = [c['hexagram'] for c in chapters]
+        require(numbers == list(range(numbers[0], numbers[0] + len(numbers))), 'Hexagram sections are not consecutive')
+        covered = list(manifest['introductory_blocks'])
+        require(covered == ids[:len(covered)], 'Introductory block order differs')
+        locations = {identifier: index for index, identifier in enumerate(ids)}
+        for chapter in chapters:
+            start, end = locations[chapter['start_id']], locations[chapter['end_id']] + 1
+            require(start == len(covered) and end > start, 'Gap, overlap, or reversed chapter range')
+            chapter_ids = ids[start:end]
+            require(len(chapter_ids) == chapter['blocks'], 'Chapter block count differs')
+            require(sum(primary_source_block(originals[i], kind) for i in chapter_ids) == chapter['tuan_passages'], 'Chapter Tuan passage count differs')
+            require(sum(words(text) for _, text in pairs[start:end]) == chapter['english_words'], 'Chapter word count differs')
+            require(english.count(f'<a id="{chapter["anchor"]}"></a>') == 1, 'Missing or duplicated chapter anchor')
+            covered.extend(chapter_ids)
+        require(covered == ids, 'Unaccounted source blocks outside chapter divisions')
     return {
         'status': 'passed', 'translation': manifest['translation'],
         'translation_sha256': sha(english), 'source_sha256': sha(source),
         **manifest['coverage'], 'local_images': len(english_images),
         'checks': ['Source unchanged', 'All source blocks represented once and in order',
-                   'Commentarial role labels aligned', 'All oracle statements present and aligned',
+                   'Commentarial role labels aligned',
+                   ('All Tuan passages and hexagram sections present and aligned' if is_tuan else 'All oracle statements present and aligned'),
                    'All endnote references resolved', 'Source images retained in order',
                    'Block-level and file-level checksums verified', 'Word counts recomputed'],
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'
