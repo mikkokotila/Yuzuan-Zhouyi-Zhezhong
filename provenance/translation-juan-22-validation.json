@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-22.md",
+  "translation_sha256": "dc6077c3dce9b82fc6dde9c5660a59474e2e143522d1e76458ddd8270da9e979",
+  "source_sha256": "f92fee1e0175cc6df9d8b796945e9239c60d6b94f9e67fd4bad8f29094a65e26",
+  "source_pages": 1,
+  "source_blocks": 131,
+  "source_headings": 33,
+  "canonical_passages": 0,
+  "miscellaneous_quotation_blocks": 16,
+  "quoted_miscellaneous_hexagrams": 64,
+  "embedded_appended_quotation_blocks": 1,
+  "sequence_groups": 8,
+  "source_glosses": 2,
+  "reading_divisions": 25,
+  "diagram_blocks": 6,
+  "diagram_images": 6,
+  "diagram_key_entries": 96,
+  "endnotes": 30,
+  "main_text_english_words": 6090,
+  "local_images": 6,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All explanatory sections, quoted hexagrams, diagram keys and cyclic overlaps present and distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "combinatorial_checks": {
+    "sequence_group_sizes": [
+      10,
+      6,
+      8,
+      6,
+      10,
+      6,
+      12,
+      6
+    ],
+    "miscellaneous_groups": [
+      28,
+      28,
+      8
+    ],
+    "first_overlap_distinct_figures": 16,
+    "second_overlap_distinct_figures": 4,
+    "diagram_key_entries": 96,
+    "cyclic_great_excess_results": [
+      44,
+      53,
+      27,
+      54,
+      43,
+      1
+    ],
+    "four_yang_middle_line_counterexamples": [
+      1,
+      28,
+      43,
+      44
+    ],
+    "scope": "Internal combinatorial checks, not proof of the proposed historical sequence or of the compilers’ relative yin–yang classifications."
+  },
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
