@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-14.md",
+  "translation_sha256": "6f811333304b68e4bb4200c356625c2cfe3fa1299a3289456969259fad12b5ec",
+  "source_sha256": "e214721f9f5b942fe0de85f117512f863ecd56db58cdbcad6703cb4c0a100314",
+  "chapters": 6,
+  "source_pages": 1,
+  "source_blocks": 373,
+  "appended_passages": 46,
+  "chapter_summaries": 6,
+  "endnotes": 78,
+  "main_text_english_words": 20616,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Appended Statements passages, chapter summaries and divisions present and distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
