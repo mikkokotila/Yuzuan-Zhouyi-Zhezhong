@@ -44,6 +44,8 @@ def shuogua_summary_number(original: str):
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'sequence_miscellaneous':
+        return original.startswith('**') and original not in {'**序卦傳**', '**雜卦傳**'}
     if kind == 'trigram_discussion':
         return (original.startswith('**') and original != '**說卦傳**'
                 and not original.startswith('**○**') and shuogua_summary_number(original) is None)
@@ -62,11 +64,12 @@ def validate(juan: str = '01') -> dict:
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
     is_wenyan = kind == 'wenyan_commentary'
     is_shuogua = kind == 'trigram_discussion'
+    is_sequence = kind == 'sequence_miscellaneous'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -101,9 +104,9 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages'}.get(kind, 'oracle_statements')
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages'}.get(kind, 'oracle_statements')
     require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
-    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua else 'hexagrams'
+    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
@@ -204,7 +207,36 @@ def validate(juan: str = '01') -> dict:
         for identifier in ids:
             if originals[identifier].startswith('【附錄】'):
                 require(translated_map[identifier].startswith('**Supplement.**'), 'Source supplement mislabeled')
-    primary_check = ('All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary' if is_shuogua else
+    if is_sequence:
+        require(manifest['coverage']['wings'] == len(source_pages) == 2, 'Expected both Sequence and Miscellaneous Wings')
+        require([s['source_title'] for s in manifest['sections']] == ['序卦傳', '雜卦傳'], 'Wing order differs')
+        totals = []
+        for section in manifest['sections']:
+            page_ids = [i for i in ids if i.startswith(f"eee-{section['page']}:")]
+            require(page_ids[0] == section['start_id'] and page_ids[-1] == section['end_id'], 'Wing range differs')
+            require(originals[page_ids[0]] == '**'+section['source_title']+'**', 'Chinese Wing heading differs')
+            selected = [int(i.rsplit(':',1)[1]) for i in page_ids if primary_source_block(originals[i], kind)]
+            require(selected == section['primary_block_numbers'], 'Wing primary-block indices differ')
+            require(len(selected) == section['canonical_passages'], 'Wing primary passage count differs')
+            for anchor in (section['anchor'], 'eee-'+section['page']):
+                require(english.count(f'<a id="{anchor}"></a>') == 1, 'Wing anchor missing or duplicated')
+            totals.append(len(selected))
+        require(totals == [manifest['coverage']['sequence_passages'], manifest['coverage']['miscellaneous_passages']], 'Wing totals differ')
+        require(sum(totals) == manifest['coverage']['canonical_passages'], 'Combined primary total differs')
+        locations = {identifier:index for index,identifier in enumerate(ids)}
+        covered = []
+        for division in manifest['reading_divisions']:
+            start,end = locations[division['start_id']],locations[division['end_id']]+1
+            require(start == len(covered) and end > start, 'Gap or overlap in reading divisions')
+            selected = ids[start:end]
+            require(len(selected) == division['blocks'], 'Reading division block total differs')
+            require(sum(primary_source_block(originals[i],kind) for i in selected) == division['canonical_passages'], 'Reading division primary total differs')
+            require(sum(words(t) for _,t in pairs[start:end]) == division['english_words'], 'Reading division word total differs')
+            require(english.count(f'<a id="{division["anchor"]}"></a>') == 1, 'Reading division anchor missing or duplicated')
+            covered.extend(selected)
+        require(covered == ids, 'Unaccounted blocks outside reading divisions')
+    primary_check = ('All Sequence and Miscellaneous passages present; both Wings, source headings and reading divisions aligned' if is_sequence else
+                     'All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary' if is_shuogua else
                      'All Wenyan passages and section summaries present and distinguished' if is_wenyan else
                      'All Appended Statements passages, chapter summaries and divisions present and distinguished' if is_appended else
                      'All Great and Small Image passages present and aligned' if kind == 'image_commentary' else

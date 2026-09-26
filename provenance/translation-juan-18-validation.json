@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-18.md",
+  "translation_sha256": "04c70b996a3d3bd3ee93c30922ccd19c64be8376f26457655ff5d99f194b3a04",
+  "source_sha256": "34ce58e36ed4b4c5163bf5acb4bc13d56277022e1d228fae8e38267f80cdd87a",
+  "wings": 2,
+  "source_pages": 2,
+  "source_blocks": 230,
+  "canonical_passages": 40,
+  "sequence_passages": 20,
+  "miscellaneous_passages": 20,
+  "endnotes": 40,
+  "main_text_english_words": 9071,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Sequence and Miscellaneous passages present; both Wings, source headings and reading divisions aligned",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
