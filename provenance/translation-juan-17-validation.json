@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-17.md",
+  "translation_sha256": "c09d5b1cefe8e09f04aa48b3c8b3989ee2259809539e93e8885ced2eb5b9fc33",
+  "source_sha256": "2db29a36ad8dc42c7caccde477068c74a2480c5355d7c2420d8346a4d454838e",
+  "chapters": 11,
+  "trigrams": 8,
+  "source_pages": 1,
+  "source_blocks": 220,
+  "shuogua_passages": 22,
+  "chapter_summaries": 10,
+  "summary_continuation_blocks": 1,
+  "endnotes": 48,
+  "main_text_english_words": 14819,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}

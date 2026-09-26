@@ -36,8 +36,17 @@ def appended_summary_number(original: str):
         return digits.get(before, 1) * 10 + digits.get(after, 0)
     return digits[numeral]
 
+def shuogua_summary_number(original: str):
+    """Accept both bold-marker orders without treating bold bullets as scripture."""
+    text = original.replace('**', '').strip()
+    text = re.sub(r'^○\s*', '', text)
+    return appended_summary_number('**' + text)
+
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'trigram_discussion':
+        return (original.startswith('**') and original != '**說卦傳**'
+                and not original.startswith('**○**') and shuogua_summary_number(original) is None)
     if kind == 'wenyan_commentary':
         return original.startswith('**') and original != '**文言傳**'
     if kind == 'appended_statements':
@@ -53,10 +62,11 @@ def validate(juan: str = '01') -> dict:
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
     is_wenyan = kind == 'wenyan_commentary'
+    is_shuogua = kind == 'trigram_discussion'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -91,9 +101,9 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages'}.get(kind, 'oracle_statements')
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages'}.get(kind, 'oracle_statements')
     require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
-    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan else 'hexagrams'
+    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
@@ -111,10 +121,10 @@ def validate(juan: str = '01') -> dict:
         require(count == section['blocks'], f"Section {section['page']} has wrong block count")
         section_words = sum(words(text) for identifier, text in pairs if identifier.startswith(f"eee-{section['page']}:"))
         require(section_words == section['english_words'], f"Section {section['page']} word count differs")
-    if is_tuan or is_appended:
+    if is_tuan or is_appended or is_shuogua:
         chapters = manifest['chapters']
-        section_key = 'chapters' if is_appended else 'hexagrams'
-        number_key = 'chapter' if is_appended else 'hexagram'
+        section_key = 'chapters' if is_appended or is_shuogua else 'hexagrams'
+        number_key = 'chapter' if is_appended or is_shuogua else 'hexagram'
         require(bool(chapters), 'No chapter divisions')
         require(len(chapters) == manifest['coverage'][section_key], 'Section count differs')
         numbers = [c[number_key] for c in chapters]
@@ -145,6 +155,33 @@ def validate(juan: str = '01') -> dict:
         require(len(summary_ids) == manifest['coverage']['chapter_summaries'] == len(manifest['chapters']), 'Chapter-summary count differs')
         translated_map = dict(pairs)
         require(all(translated_map[i].startswith('**Original Meaning — Chapter Summary.**') for i in summary_ids), 'Chapter summary mislabeled as canonical text')
+    if is_shuogua:
+        actual = [i for i in ids if shuogua_summary_number(originals[i]) is not None]
+        require(actual == manifest['summary_blocks'], 'Shuogua source summaries differ')
+        require(len(actual) == manifest['coverage']['chapter_summaries'], 'Shuogua summary total differs')
+        translated_map = dict(pairs)
+        require(all(translated_map[i].startswith('**Original Meaning — Chapter Summary.**') for i in actual), 'Shuogua summary mislabeled')
+        supplied = {p['endnote'] for p in manifest['collation']['supplementary_passages']}
+        for chapter in manifest['chapters']:
+            chapter_ids = ids[locations[chapter['start_id']]:locations[chapter['end_id']]+1]
+            expected = [i for i in actual if i in chapter_ids]
+            sid = chapter['summary_id']
+            if sid is not None:
+                require(expected == [sid], 'Shuogua chapter summary coverage differs')
+                require(shuogua_summary_number(originals[sid]) == chapter['chapter'], 'Shuogua source chapter number differs')
+            else:
+                require(not expected, 'Existing source summary incorrectly reported absent')
+                evidence = chapter['source_chapter_evidence']
+                require(evidence['id'] in chapter_ids and evidence['phrase'] in originals[evidence['id']], 'Unattested Shuogua chapter division')
+                require(appended_summary_number('**'+evidence['phrase']) == chapter['chapter'], 'Chapter evidence number differs')
+                require(chapter['summary_endnote'] in supplied and chapter['summary_endnote'] in definitions, 'Missing supplementary summary note')
+        continuations = manifest['summary_continuation_ids']
+        require(len(continuations) == manifest['coverage']['summary_continuation_blocks'], 'Summary continuation count differs')
+        require(continuations == [i for c in manifest['chapters'] for i in c.get('summary_continuation_ids', [])], 'Chapter summary continuations differ')
+        for identifier in continuations:
+            require(ids[locations[identifier]-1] in actual, 'Detached summary continuation')
+            require(not primary_source_block(originals[identifier], kind), 'Summary continuation marked canonical')
+            require(translated_map[identifier].startswith('**Original Meaning — Chapter Summary, continued.**'), 'Summary continuation mislabeled')
     if is_wenyan:
         source_summaries = [i for i in ids if re.search(r'此(?:第[一二三四五六]+節|以上申)', originals[i])]
         embedded = [i for i in source_summaries if originals[i].startswith('【本義】')]
@@ -167,7 +204,8 @@ def validate(juan: str = '01') -> dict:
         for identifier in ids:
             if originals[identifier].startswith('【附錄】'):
                 require(translated_map[identifier].startswith('**Supplement.**'), 'Source supplement mislabeled')
-    primary_check = ('All Wenyan passages and section summaries present and distinguished' if is_wenyan else
+    primary_check = ('All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary' if is_shuogua else
+                     'All Wenyan passages and section summaries present and distinguished' if is_wenyan else
                      'All Appended Statements passages, chapter summaries and divisions present and distinguished' if is_appended else
                      'All Great and Small Image passages present and aligned' if kind == 'image_commentary' else
                      'All Tuan passages and hexagram sections present and aligned' if is_tuan else
