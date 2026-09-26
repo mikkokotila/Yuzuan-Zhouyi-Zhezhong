@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-12.md",
+  "translation_sha256": "1d9eb3cb06bb5b920d9ec3056f4018e718ecc44aac7b27dc40da8a0fea0e6be8",
+  "source_sha256": "21f140ed6f11419106c6a4ecd19eb1b6bfee3071a295ad09c6903a35f3d87c5a",
+  "hexagrams": 34,
+  "source_pages": 34,
+  "source_blocks": 1206,
+  "image_passages": 237,
+  "great_images": 34,
+  "ordinary_small_images": 203,
+  "supplementary_small_images": 1,
+  "endnotes": 144,
+  "main_text_english_words": 39455,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Great and Small Image passages present and aligned",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
