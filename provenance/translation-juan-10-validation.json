@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-10.md",
+  "translation_sha256": "119cdcd599cec1fd75ee497b68f19aa251fd039e63802bda5b329d69920b875f",
+  "source_sha256": "83b5c3dc70d49d613775c9e4fedb7f64bdd4c7ea51d6c024748005a7f4f77891",
+  "hexagrams": 34,
+  "source_pages": 1,
+  "source_blocks": 610,
+  "tuan_passages": 97,
+  "endnotes": 104,
+  "main_text_english_words": 26225,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Tuan passages and hexagram sections present and aligned",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
