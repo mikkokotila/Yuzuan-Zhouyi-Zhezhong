@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-21.md",
+  "translation_sha256": "500de859eecc93eaa9434b4c6c8a7bea395e85a0893a8faab3666c7c9b8c2cca",
+  "source_sha256": "7dfcb9f0d01bb5a564bba0ee9260ffd37a85fb5fda4d37ed2e90094f8c67d90f",
+  "source_pages": 1,
+  "source_blocks": 264,
+  "source_headings": 28,
+  "canonical_passages": 0,
+  "trigram_shift_entries": 16,
+  "diagram_blocks": 35,
+  "diagram_images": 37,
+  "endnotes": 49,
+  "main_text_english_words": 11353,
+  "local_images": 37,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All supplementary sections, equations, trigram shifts and diagrams present and distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "mathematical_checks": {
+    "explicit_equations": 108,
+    "four_by_four_arrays": 4,
+    "binomial_rows": 7,
+    "reversal_invariant_hexagrams": 8,
+    "reversal_classes": {
+      "0": 12,
+      "1": 32,
+      "2": 12
+    },
+    "overlapping_figures": 16,
+    "calendar_model": "Exact rational checks within the stipulated 365¼-day year and 29 + 499/940-day lunation.",
+    "scope": "Internal identities only. The circle ratio and 32-month intercalation claim are not certified as exact astronomy or geometry.",
+    "source_aligned_trigram_shifts": 16
+  },
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
