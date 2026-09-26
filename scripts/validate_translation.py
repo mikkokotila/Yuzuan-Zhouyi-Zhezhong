@@ -10,6 +10,7 @@ import hashlib
 import json
 import re
 import sys
+import validate_primer_charts as primer_charts
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -44,6 +45,8 @@ def shuogua_summary_number(original: str):
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'learning_primer_divination':
+        return primer_charts.primary(original)
     if kind == 'learning_primer':
         excluded = {'易學啓蒙', '本圖書第一', '原卦畫第二', '淳熙丙午暮春既望', '兩儀生四象', '四象生八卦'}
         return original.startswith('**') and '![' not in original and original.replace('**', '').strip() not in excluded
@@ -74,13 +77,14 @@ def validate(juan: str = '01') -> dict:
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous', 'learning_primer'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous', 'learning_primer', 'learning_primer_divination'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
     is_wenyan = kind == 'wenyan_commentary'
     is_shuogua = kind == 'trigram_discussion'
     is_sequence = kind == 'sequence_miscellaneous'
-    is_primer = kind == 'learning_primer'
+    is_primer20 = kind == 'learning_primer_divination'
+    is_primer = kind in {'learning_primer','learning_primer_divination'}
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -116,7 +120,7 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages', 'learning_primer':'primer_passages'}.get(kind, 'oracle_statements')
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages', 'learning_primer':'primer_passages', 'learning_primer_divination':'primer_passages'}.get(kind, 'oracle_statements')
     translated_primary_count = sum(t.startswith(('**Primer text', '**Primer quotation', '**Primer Preface')) for _, t in pairs) if is_primer else len(re.findall(r'^### ', main, re.M))
     require(translated_primary_count == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
     page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence or is_primer else 'hexagrams'
@@ -129,7 +133,10 @@ def validate(juan: str = '01') -> dict:
     image_pattern = r'!\[[^\]]*\]\(([^)]+)\)'
     source_images = re.findall(image_pattern, source)
     english_images = re.findall(image_pattern, main)
-    require(english_images == source_images, 'Source image order or identities changed')
+    if is_primer20:
+        primer_charts.validate_images(manifest, originals, dict(pairs), target, definitions)
+    else:
+        require(english_images == source_images, 'Source image order or identities changed')
     for image in english_images:
         require((target.parent / image).is_file(), f'Missing image: {image}')
     for section in manifest['sections']:
@@ -248,7 +255,7 @@ def validate(juan: str = '01') -> dict:
             require(english.count(f'<a id="{division["anchor"]}"></a>') == 1, 'Reading division anchor missing or duplicated')
             covered.extend(selected)
         require(covered == ids, 'Unaccounted blocks outside reading divisions')
-    if is_primer:
+    if kind == 'learning_primer':
         translated_map = dict(pairs)
         require(not re.search(r'^### ', main, re.M), 'Primer mislabeled as new canonical passages')
         require('⟦PARA⟧' not in english, 'Unexpanded paragraph marker')
@@ -294,7 +301,10 @@ def validate(juan: str = '01') -> dict:
         for i in ids:
             if originals[i].startswith('【附錄】'):
                 require(translated_map[i].startswith('**Supplement.**'), 'Source supplement mislabeled')
-    primary_check = ('All primer passages, embedded quotations, glosses, titles, captions and diagrams present and distinguished' if is_primer else
+    if is_primer20:
+        primer_charts.validate(manifest, originals, pairs, english, words)
+    primary_check = ('All casting rules and 32 transformation charts complete; every chart label and documented image correction verified' if is_primer20 else
+                     'All primer passages, embedded quotations, glosses, titles, captions and diagrams present and distinguished' if is_primer else
                      'All Sequence and Miscellaneous passages present; both Wings, source headings and reading divisions aligned' if is_sequence else
                      'All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary' if is_shuogua else
                      'All Wenyan passages and section summaries present and distinguished' if is_wenyan else
@@ -309,7 +319,8 @@ def validate(juan: str = '01') -> dict:
         'checks': ['Source unchanged', 'All source blocks represented once and in order',
                    'Commentarial role labels aligned',
                    primary_check,
-                   'All endnote references resolved', 'Source images retained in order',
+                   'All endnote references resolved',
+                   ('All image positions retained; twelve explicitly documented chart references corrected' if is_primer20 else 'Source images retained in order'),
                    'Block-level and file-level checksums verified', 'Word counts recomputed'],
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'
     }
