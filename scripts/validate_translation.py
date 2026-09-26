@@ -26,8 +26,8 @@ def require(condition: bool, message: str) -> None:
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
-    if kind == 'tuan_commentary':
-        return original.startswith('**') and re.fullmatch(r'\*\*彖[上下]傳\*\*', original) is None
+    if kind in {'tuan_commentary', 'image_commentary'}:
+        return original.startswith('**') and re.fullmatch(r'\*\*[彖象][上下]傳\*\*', original) is None
     return original.startswith('**') and '，' in original.split('**')[1]
 
 def validate(juan: str = '01') -> dict:
@@ -35,7 +35,7 @@ def validate(juan: str = '01') -> dict:
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
@@ -71,7 +71,7 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = 'tuan_passages' if is_tuan else 'oracle_statements'
+    count_key = 'image_passages' if kind == 'image_commentary' else ('tuan_passages' if is_tuan else 'oracle_statements')
     require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
     page_key = 'source_pages' if is_tuan else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
@@ -115,7 +115,7 @@ def validate(juan: str = '01') -> dict:
         **manifest['coverage'], 'local_images': len(english_images),
         'checks': ['Source unchanged', 'All source blocks represented once and in order',
                    'Commentarial role labels aligned',
-                   ('All Tuan passages and hexagram sections present and aligned' if is_tuan else 'All oracle statements present and aligned'),
+                   ('All Great and Small Image passages present and aligned' if kind == 'image_commentary' else ('All Tuan passages and hexagram sections present and aligned' if is_tuan else 'All oracle statements present and aligned')),
                    'All endnote references resolved', 'Source images retained in order',
                    'Block-level and file-level checksums verified', 'Word counts recomputed'],
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'
