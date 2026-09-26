@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-19.md",
+  "translation_sha256": "354fa5d95b3c5f1eafec5e66ff1fc5e70857b16a9a7d0cd7a672fc97617ae27c",
+  "source_sha256": "082347b38e66d319c5e9f2514c798b6f766f8d49e0f534495b79cb0ea11eeca8",
+  "parts": 2,
+  "source_pages": 3,
+  "source_blocks": 152,
+  "primer_passages": 57,
+  "canonical_quotation_blocks": 11,
+  "primer_gloss_blocks": 9,
+  "diagram_blocks": 9,
+  "diagram_images": 11,
+  "diagram_caption_blocks": 4,
+  "endnotes": 54,
+  "main_text_english_words": 15422,
+  "local_images": 11,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All primer passages, embedded quotations, glosses, titles, captions and diagrams present and distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}

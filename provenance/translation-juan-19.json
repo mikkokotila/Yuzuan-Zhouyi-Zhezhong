@@ -1,0 +1,1360 @@
+{
+  "schema_version": 2,
+  "text_kind": "learning_primer",
+  "translation": "translation/juan-19.md",
+  "language": "en",
+  "revision": 1,
+  "source": "source/juan-19.md",
+  "source_sha256": "082347b38e66d319c5e9f2514c798b6f766f8d49e0f534495b79cb0ea11eeca8",
+  "source_commit": "c789acc82f69cdfdd4ac5dea232d81b798ad419f",
+  "source_read_at_commit": "a9a7bc0500ff6c4ac4c7299d9d459471cbe6adef",
+  "translation_sha256": "354fa5d95b3c5f1eafec5e66ff1fc5e70857b16a9a7d0cd7a672fc97617ae27c",
+  "scope": "Complete nineteenth numbered juan: the embedded Yixue qimeng preface, Parts One and Two, all eleven base images and all accompanying explanations. The imperial front matter and preliminary juan are not translated here.",
+  "coverage": {
+    "parts": 2,
+    "source_pages": 3,
+    "source_blocks": 152,
+    "primer_passages": 57,
+    "canonical_quotation_blocks": 11,
+    "primer_gloss_blocks": 9,
+    "diagram_blocks": 9,
+    "diagram_images": 11,
+    "diagram_caption_blocks": 4,
+    "endnotes": 54,
+    "main_text_english_words": 15422
+  },
+  "sections": [
+    {
+      "page": "4712",
+      "title": "Embedded Primer Preface",
+      "source_url": "https://www.eee-learning.com/book/4712",
+      "start_id": "eee-4712:001",
+      "end_id": "eee-4712:004",
+      "blocks": 4,
+      "primer_passages": 1,
+      "english_words": 302
+    },
+    {
+      "page": "4713",
+      "title": "Part One: Chart and Writing",
+      "source_url": "https://www.eee-learning.com/book/4713",
+      "start_id": "eee-4713:001",
+      "end_id": "eee-4713:046",
+      "blocks": 46,
+      "primer_passages": 17,
+      "english_words": 5166
+    },
+    {
+      "page": "4714",
+      "title": "Part Two: Origin of the Strokes",
+      "source_url": "https://www.eee-learning.com/book/4714",
+      "start_id": "eee-4714:001",
+      "end_id": "eee-4714:102",
+      "blocks": 102,
+      "primer_passages": 39,
+      "english_words": 9954
+    }
+  ],
+  "reading_divisions": [
+    {
+      "anchor": "primer-preface",
+      "title": "The Primer’s Preface",
+      "start_id": "eee-4712:001",
+      "end_id": "eee-4712:004",
+      "blocks": 4,
+      "primer_passages": 1,
+      "english_words": 302
+    },
+    {
+      "anchor": "part-1",
+      "title": "Taking the Chart and Writing as the Foundation",
+      "start_id": "eee-4713:001",
+      "end_id": "eee-4713:046",
+      "blocks": 46,
+      "primer_passages": 17,
+      "english_words": 5166
+    },
+    {
+      "anchor": "part-2",
+      "title": "Tracing the Origin of the Hexagram Strokes",
+      "start_id": "eee-4714:001",
+      "end_id": "eee-4714:008",
+      "blocks": 8,
+      "primer_passages": 3,
+      "english_words": 812
+    },
+    {
+      "anchor": "generating-figures",
+      "title": "The Generation of the Figures",
+      "start_id": "eee-4714:009",
+      "end_id": "eee-4714:033",
+      "blocks": 25,
+      "primer_passages": 7,
+      "english_words": 1935
+    },
+    {
+      "anchor": "drawing-and-transmission",
+      "title": "Drawing, Interpretation, and Transmission",
+      "start_id": "eee-4714:034",
+      "end_id": "eee-4714:040",
+      "blocks": 7,
+      "primer_passages": 0,
+      "english_words": 864
+    },
+    {
+      "anchor": "earlier-heaven",
+      "title": "Earlier Heaven",
+      "start_id": "eee-4714:041",
+      "end_id": "eee-4714:077",
+      "blocks": 37,
+      "primer_passages": 14,
+      "english_words": 3084
+    },
+    {
+      "anchor": "later-heaven",
+      "title": "Later Heaven",
+      "start_id": "eee-4714:078",
+      "end_id": "eee-4714:102",
+      "blocks": 25,
+      "primer_passages": 15,
+      "english_words": 3259
+    }
+  ],
+  "blocks": [
+    {
+      "id": "eee-4712:001",
+      "source_sha256": "4495914599fe3ddb09f0eae840d996e8c9f0d88c590c3b6e8be1daf13faf59b0",
+      "translation_sha256": "fc42c897b9664a1a002c79823dd980c4db18cac95e32c6bf458380390bcf7f97",
+      "english_words": 7
+    },
+    {
+      "id": "eee-4712:002",
+      "source_sha256": "bb7e0ccdb990cc56a77c62137330c27aacef24a0fb27cc4b3bf693d98fa262eb",
+      "translation_sha256": "62b2370bb267943ac2329e6f4a67e0b8d59c5a94334534b7e3fe0e7d92312da2",
+      "english_words": 243
+    },
+    {
+      "id": "eee-4712:003",
+      "source_sha256": "30bc0749ca407784c9b64c70594356d777149e18f511961ba7f33f83b3e8e325",
+      "translation_sha256": "14ea3a70e2ab06d2ac7a64b2a9b30a79247af0c9d0c236525ecc861d17d46a83",
+      "english_words": 13
+    },
+    {
+      "id": "eee-4712:004",
+      "source_sha256": "41a5ab9171f03bb4c5cbbac1e17cbf0c16b30e86b620d3477f2aabe552cfea21",
+      "translation_sha256": "50435e5422e351712e57833a7e17755c243193b4298824f31c850d7209b33b8d",
+      "english_words": 39
+    },
+    {
+      "id": "eee-4713:001",
+      "source_sha256": "d6eb8dacf10853ebccdb9ead820158be7fa778338ccfacbf09a3dc6da7b01ad5",
+      "translation_sha256": "08c4ac22fe91c9b1559cc600a6a21528ff7b77c37b59c276da9caea0aa940129",
+      "english_words": 10
+    },
+    {
+      "id": "eee-4713:002",
+      "source_sha256": "a6662f23674515b8f4aa1b8b8aca8cf1c217d39c9fb270af50d4bf839e8b13a5",
+      "translation_sha256": "cba9e0cc3b666b2df0b8c9ca6ee0ce524464099f503cd4c49b7334b8fcecdb45",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4713:003",
+      "source_sha256": "ac25bf76fb1b61f0149983c4f83120176f86c2e30bd249dfc5276e3d61d705e2",
+      "translation_sha256": "6bb17ca7a4825dabab43b62b748efd5ce3b23e56d31aaaab035ec8df0b6c5884",
+      "english_words": 27
+    },
+    {
+      "id": "eee-4713:004",
+      "source_sha256": "0f562c729f7dbab5f31088c8ef9b73f8acae820550cad45d7468083d24e33393",
+      "translation_sha256": "7901f49375fee97cbe74fe79851d836d3db8f4c3a015774b13c9ee894e27d5fe",
+      "english_words": 61
+    },
+    {
+      "id": "eee-4713:005",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4713:006",
+      "source_sha256": "55ed3107c0c6e4556f8fc17c46ed6003b334e0006b7ecf89a7dd09e8bbe8d9f2",
+      "translation_sha256": "e659ac9d344508b9007b231e465d0739183601c0dba96c54e6b1b7b401939611",
+      "english_words": 361
+    },
+    {
+      "id": "eee-4713:007",
+      "source_sha256": "cc254c1fba250f240acf87a7f23a41c0278d49ed19c4ff1343bc44feef362d58",
+      "translation_sha256": "97a3ed6b79ee403385e45a330dfa662809a140c23b822c936eff26a873c3f16b",
+      "english_words": 69
+    },
+    {
+      "id": "eee-4713:008",
+      "source_sha256": "248ed4e41aad6b3ef0bd50f24a2dcbeaf1c7c68e4cb2ab990f2e823c99492e92",
+      "translation_sha256": "d9489902563c13f9947575d3179c7d2c97fa9de88674a3542b6232fe3e57840e",
+      "english_words": 63
+    },
+    {
+      "id": "eee-4713:009",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4713:010",
+      "source_sha256": "6d0167319e4be08c6fb47da692be00e6a327e9934a8b304650db5dbbfb817366",
+      "translation_sha256": "ce2f6908438c17ce9ffd88e1000269a3b10802fc7d018fa718f33263a95786d8",
+      "english_words": 64
+    },
+    {
+      "id": "eee-4713:011",
+      "source_sha256": "6fa99ee18dad565bb175bab362e9a646dafa3bf0bf46f111489d2ecb1cd9832b",
+      "translation_sha256": "7a694f77cc5c257c61ebe4cd65b61aabeab395cfd33f73666f5400e724fb83d1",
+      "english_words": 54
+    },
+    {
+      "id": "eee-4713:012",
+      "source_sha256": "4050a036aa64cd87a028949b404677541f34b6e4f5f1a0d9223230fffbaf7a98",
+      "translation_sha256": "4010aac4d57280e6a727cdcb7ba86d45e0cb2d6184d6ec3d2b245f113237a206",
+      "english_words": 40
+    },
+    {
+      "id": "eee-4713:013",
+      "source_sha256": "1ef1982c0c7acea3b2efcd85ed44aec076937c55bf60b46318ad9158a434da07",
+      "translation_sha256": "c2a88b0c777f6d2aa390044c8c141312ad45c148672cebd35b9690b9d2392dae",
+      "english_words": 19
+    },
+    {
+      "id": "eee-4713:014",
+      "source_sha256": "6adc96b8507a29c8e2774ee4190225d5973be125a874ff91240db00e952908d2",
+      "translation_sha256": "d2dc39b5649f50091263887d7a336bec7cc263be8e3959c5bf8ec419c7ebe49a",
+      "english_words": 42
+    },
+    {
+      "id": "eee-4713:015",
+      "source_sha256": "5304b279aa3168fb1f24565eca1786114dce5febdf6fb258931fd03a769198e3",
+      "translation_sha256": "6110b4b9451c060e49dca1d7d8932b89288d37b299d8a09226b394905956f68a",
+      "english_words": 29
+    },
+    {
+      "id": "eee-4713:016",
+      "source_sha256": "6e80454ed9c60a1fce4a2ab8d8d3844fa7cdded5aaf6b033187fb1a43b52d4ca",
+      "translation_sha256": "aba303b2d5f1400d90a5de1f96f691aefe62bfb05421d1a8f2af0e935ca49032",
+      "english_words": 26
+    },
+    {
+      "id": "eee-4713:017",
+      "source_sha256": "1755b432f412895ded21c60b8e8de161a3957005397f62b2600cc5699a69cc5e",
+      "translation_sha256": "e87ab72418e72410b4e17c1da4a733cebe1d4377e7b4f2cef92e29ab28239179",
+      "english_words": 41
+    },
+    {
+      "id": "eee-4713:018",
+      "source_sha256": "45866c333dd1e49b251257ceee8a0afb2343e94be10b86dcf3f9c3a3f33eae66",
+      "translation_sha256": "6f2e40a11134f78684fec601f053a95c7e5843c70d4bf6250a68301f3420f02f",
+      "english_words": 480
+    },
+    {
+      "id": "eee-4713:019",
+      "source_sha256": "15e8a4b59a5d6ce7a5259d802fc8e36edf3e708a61c4d5cf91d742bcfec435c5",
+      "translation_sha256": "e959d6bdcb883c6ac4116a83ef00a3cc1a5e4159ce2eac2f0f7a48fd2e3980c9",
+      "english_words": 72
+    },
+    {
+      "id": "eee-4713:020",
+      "source_sha256": "3c8cc54c787af9816ebfbb80d86ea176aa0b603b5f812a0d237fb276a72194f2",
+      "translation_sha256": "319712f39331013dbf8f959b2b3e5026f6c0dc75921c657acb72923efa46f7de",
+      "english_words": 340
+    },
+    {
+      "id": "eee-4713:021",
+      "source_sha256": "ba17b5bf58a2f370537f5c624e0fbb35216e9ebb3bbe3321b7e225154cfcdecc",
+      "translation_sha256": "afe65d678bc3b89ab83f2ef29fa26fb1e422d734f7deb136bdc98ddcd9e1f683",
+      "english_words": 96
+    },
+    {
+      "id": "eee-4713:022",
+      "source_sha256": "6f818d9508528502994006523be538f6847f53cdaa98e2d75d68f364e93bc6b6",
+      "translation_sha256": "ffad3ed8045d0df92886f658ec43ed4603639f7ab8fd8a683b7cf8f0d79cced9",
+      "english_words": 89
+    },
+    {
+      "id": "eee-4713:023",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4713:024",
+      "source_sha256": "eef4bbda5ed27c761f8b6366872932fcd75cd564220a28d75d0effc2a0f4b71c",
+      "translation_sha256": "a66f92d44e90001b4bac996eaa6ed358159da1ea387ef39bbf717d854fee64c3",
+      "english_words": 220
+    },
+    {
+      "id": "eee-4713:025",
+      "source_sha256": "75b38d407ca9563eaf57ecdc5756af4574e128dff186bc90918739a5894278e1",
+      "translation_sha256": "c3e33bf8827082779ad2695c87492e20b7f547b92e979d47dc04637838ff0143",
+      "english_words": 252
+    },
+    {
+      "id": "eee-4713:026",
+      "source_sha256": "40f70fcb95b2a9b6ce9aabbf2992a1a3c25a1801c4c7fb819622852bf8933801",
+      "translation_sha256": "7b8c756dc7c23daab0192d931b6d7be432ec9f731a3f0be5058c40924f226c46",
+      "english_words": 190
+    },
+    {
+      "id": "eee-4713:027",
+      "source_sha256": "1f580738dce3cb3b1aebdc6d9cddb932393f7acf869be5ea92bf1bd5fffad5cb",
+      "translation_sha256": "b9d7731475fd6eaabdfa9ccda384b25efd09baf517d6f4e247bb041390556f12",
+      "english_words": 133
+    },
+    {
+      "id": "eee-4713:028",
+      "source_sha256": "5d71944353016d11cdb48fdd0b8704fd62c6f23e75adfeffd13fadace5184e38",
+      "translation_sha256": "c9c9dd0f513c02e731e3c061345af257237d32471a61905ce0138a5dcab01f8f",
+      "english_words": 55
+    },
+    {
+      "id": "eee-4713:029",
+      "source_sha256": "4423e6b64ee2f6425f0a97a8e0f6b024e06991265d8bf908626b5ffac9f97c07",
+      "translation_sha256": "0188324b1983a0dfc287bfde9e8bc4251c254f7e67de9880d7b31b23d2e96eef",
+      "english_words": 276
+    },
+    {
+      "id": "eee-4713:030",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4713:031",
+      "source_sha256": "c798fcf4bdbb466b8cc305643dfcac9b5243a95b2f0274d27585dd4da5fd06a9",
+      "translation_sha256": "8479c8cfd4587565515c18845b07c4aa597d6d8ee298921aa9109aabab68b459",
+      "english_words": 32
+    },
+    {
+      "id": "eee-4713:032",
+      "source_sha256": "c33b480bffb14c4d0268272bf7e06c43c09c56e96663a8176cf3f65b3db198bc",
+      "translation_sha256": "d36e885c2cb67e366e3bade34d10338f7b755e4357af9278bef024d4e634f473",
+      "english_words": 125
+    },
+    {
+      "id": "eee-4713:033",
+      "source_sha256": "616730bdb0655f1fa1e484f1cef6cf8ddc61da7164ddc1659c65b2f7e9dd4085",
+      "translation_sha256": "bfefcf66167afd329cb69987d5406be1f50366d8805b32de9a81a1c5ea3213c4",
+      "english_words": 39
+    },
+    {
+      "id": "eee-4713:034",
+      "source_sha256": "5c741aa76780697c0281c2c12677d4be19d9d60ceff37b45f7dc2926126180fb",
+      "translation_sha256": "1dd90688fd97bb0a54ff46fbb50b73541990542945a161a9dbcef4807ea8a21a",
+      "english_words": 198
+    },
+    {
+      "id": "eee-4713:035",
+      "source_sha256": "9798685c8acb037edc9963e767a960fbdee3466b7cce19d904c84dc603ce30f4",
+      "translation_sha256": "c81067ded1d49eacb5d5767a5ef2037028c36115202178c2cdc7af0d93467905",
+      "english_words": 87
+    },
+    {
+      "id": "eee-4713:036",
+      "source_sha256": "25109e01892aee017e9bd822017f5a0784414552ff1e9e66182c5663dfafdb10",
+      "translation_sha256": "370b5bc79a9e980553a4c49a1cafbd975b0715911d21971871444d66430a2423",
+      "english_words": 16
+    },
+    {
+      "id": "eee-4713:037",
+      "source_sha256": "2bbd6a0112894c36487087aa24cc85be40d0fff4af8019f6624eca039e581e97",
+      "translation_sha256": "adfd9043850c4a0304b7bbdfba6ec019f06fa112d6b3edc8277cc7004bab02c7",
+      "english_words": 161
+    },
+    {
+      "id": "eee-4713:038",
+      "source_sha256": "021e92b3f1601bca72d1472c4d53debbb39821c45dbf82ec4c5f46e1c0a497bb",
+      "translation_sha256": "90156c3d5e991e53742a313a0bff6ee088a4ea27d42360f85caae4069f3f4024",
+      "english_words": 203
+    },
+    {
+      "id": "eee-4713:039",
+      "source_sha256": "6b6b4fcadaa089a93f6ede6e2c95074d2d365d5d5298804074f6b6fd693b699c",
+      "translation_sha256": "7216d3bd93ab6d1dbeb5dfbea74f472629d9f50e233c7b1cfaf3cf337a66907d",
+      "english_words": 176
+    },
+    {
+      "id": "eee-4713:040",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4713:041",
+      "source_sha256": "43cec0950a4b8242ee48208a068ede92fd9ddf96fd76c837f66c4ee85b040be0",
+      "translation_sha256": "48d9d1e981f4f8e53d97558af4d3f66597ef6eb5726d4b4f3255e3d2fb20991d",
+      "english_words": 242
+    },
+    {
+      "id": "eee-4713:042",
+      "source_sha256": "82b62d3d51dd0d6a7a283206de617000268a4bc97ca9938ec8f5db0ca47d7206",
+      "translation_sha256": "c903eb1a36274f5be754b5e501665f886f47838b80536c9bfddffcb03dfc3998",
+      "english_words": 42
+    },
+    {
+      "id": "eee-4713:043",
+      "source_sha256": "9b5f0cf55f42d2cb8a2d0a8c37d453649949aa9dc378835a9402e3d9ee4909ce",
+      "translation_sha256": "9290b595c06a102d24dc50ef8d1755b0aa65bdda6b2f65e7b762814bc4c9db83",
+      "english_words": 96
+    },
+    {
+      "id": "eee-4713:044",
+      "source_sha256": "1e87095f8bd36a44ad0effefea7fddd563a2da48a1c1680abbc53ba965d3f5f0",
+      "translation_sha256": "657dcf5a54f3179aa37c8029f5242613f774e06c33ec1278f6164b8271dcb92f",
+      "english_words": 44
+    },
+    {
+      "id": "eee-4713:045",
+      "source_sha256": "69f72aa71e3951d49924f3fc908d04f3eef568a752e744946b57be2f584acf1e",
+      "translation_sha256": "2d067b5431b5b789befe7d1e8a3116df4f3db8bf1388c6f248681762c9251fe4",
+      "english_words": 248
+    },
+    {
+      "id": "eee-4713:046",
+      "source_sha256": "c50ab574fb6b36196e10ed0628fcfb65ec0939ab91d935b408818c0d4f7be04f",
+      "translation_sha256": "796dc923bd3ced6cff500e7cc3ac410361475a89fb2a11765df33ea817d827d9",
+      "english_words": 338
+    },
+    {
+      "id": "eee-4714:001",
+      "source_sha256": "29135900ff460b58b6485d542aec8ba78999f4d4c1e8a34eb65a946aacc02112",
+      "translation_sha256": "8da9a6ff993c415360f18ee89a26999522cf0c8ad713d9d7514c4627cdc74eb1",
+      "english_words": 9
+    },
+    {
+      "id": "eee-4714:002",
+      "source_sha256": "625485ce7764db4e9ad869e02de92d3ab843c08de1e84c31da4c5cd67dc4b1e7",
+      "translation_sha256": "21df398d2247231442a9afa92295adee988701771753b9697a1f2a720554a8a8",
+      "english_words": 166
+    },
+    {
+      "id": "eee-4714:003",
+      "source_sha256": "4a811357abd6ac939e7c0cdbecdae20d0e0137b3cbb67e682f8f2bab3d6969c5",
+      "translation_sha256": "a447d2088d51dab6eddbf04394adf775862fc8eb28d41badfa9b1c7c9f34e7a0",
+      "english_words": 78
+    },
+    {
+      "id": "eee-4714:004",
+      "source_sha256": "73cecc64b39f7d84848f119858c8bc6d7a682444ed32488abd44d1e05f436322",
+      "translation_sha256": "7e5b8b383bbbd0acc8115e72e34cff3e99d3ede859b5c7079bc0fa88f8dcb624",
+      "english_words": 35
+    },
+    {
+      "id": "eee-4714:005",
+      "source_sha256": "666a9aad0cd31549a5bf77dbea9ee78adfdef2678442667bfba5a2f06d71de26",
+      "translation_sha256": "88586a10e6db0c09fb161f4de16afd01c1f5d509c25aa9ca15bda75ad199025c",
+      "english_words": 299
+    },
+    {
+      "id": "eee-4714:006",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:007",
+      "source_sha256": "bdc8383f2cb07bd3c69095f1e3faca5f71e02929e069bb8f951caca1ac654eee",
+      "translation_sha256": "b6e9282e61e69b9a95daf86b05b4150589a0d1eba51eee4a38c45a494ac3d020",
+      "english_words": 60
+    },
+    {
+      "id": "eee-4714:008",
+      "source_sha256": "4398e85ca72850de7b93f5824d4e6514634a801edec83eddc9a886f634d81071",
+      "translation_sha256": "1a15b399a74140f291f505f636e46841d9eac370420f298008cde3e9de49ce56",
+      "english_words": 163
+    },
+    {
+      "id": "eee-4714:009",
+      "source_sha256": "e390f2e060eb39ae4e9b920c0a092a53d865b1bc52424ba75addb0504254d2ed",
+      "translation_sha256": "f6788da86c416bd9307838bd9ec52b4aebd84392ef2a26f81afc90e2cbad24b0",
+      "english_words": 8
+    },
+    {
+      "id": "eee-4714:010",
+      "source_sha256": "38f90aca072de004f5cf2e10d7c719ea2625faa279911e262d800a3394c1beaa",
+      "translation_sha256": "e7553cca42ea76f5008d3d6c54ba571ab8951374702ebbfbf9e56ed7fd15067f",
+      "english_words": 84
+    },
+    {
+      "id": "eee-4714:011",
+      "source_sha256": "14db4952159c42b60ba64686457ebaa79f8759311819f0c59fa8f1d77b46fbd2",
+      "translation_sha256": "dfa8d388798b880dd92ee0c0067983ada3c1e0789da3ed90d46cc16d6dc769b1",
+      "english_words": 149
+    },
+    {
+      "id": "eee-4714:012",
+      "source_sha256": "5f910cf34124042bb28d295738ae2513cbeacc91ef99983dfa4106ab3b44c4ff",
+      "translation_sha256": "83da0f75be3459e326c2326ef92cad0959b6e0baa8f38f7c9f7512c60cad2e75",
+      "english_words": 9
+    },
+    {
+      "id": "eee-4714:013",
+      "source_sha256": "a931f7972f3688b54dbb65c6ecd8a8a1593542e159b8e81008cbe5034814250f",
+      "translation_sha256": "c6ea6844bbecd9710e095d3bd5e39aebf2552cc17df88e13f4ff172e7966e40e",
+      "english_words": 105
+    },
+    {
+      "id": "eee-4714:014",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:015",
+      "source_sha256": "604b61b2b9c71e29bd4a14bb533025a112fc1f1d185118326ecca7ba2ffa889c",
+      "translation_sha256": "26c620de6cf9d4cc3f36c746863ee2611fa4e0a903fe93794aedacc5963e5a80",
+      "english_words": 94
+    },
+    {
+      "id": "eee-4714:016",
+      "source_sha256": "a2d2f314ed91dd6650cc922280e3dcf11d19c1721ce09e0745bb54cf74a06037",
+      "translation_sha256": "723076735733de385295e4da5fe01d8d3631406a727544e8f02b1e14fe7ec19f",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:017",
+      "source_sha256": "d074cc9d61e05ab65a466353d3c1393b719e6c70c8541592916f65c9463d7d33",
+      "translation_sha256": "733a27630dd7f2ae921433565ed588581ffed39a0ce4f1f381bc98f9a02b115c",
+      "english_words": 11
+    },
+    {
+      "id": "eee-4714:018",
+      "source_sha256": "03deba7c1eb6a01e2780378a25381218e4b57918c89d6d4e61bb9444e3fdf811",
+      "translation_sha256": "297cb2cf510a6afa5bf7478d940b5dece071e910ce3dff0ae25869f4e28c82a4",
+      "english_words": 139
+    },
+    {
+      "id": "eee-4714:019",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:020",
+      "source_sha256": "8222f75ded313d146fff2fa26640cc8f6d72a11ba7f77b3cb90df13baa34380b",
+      "translation_sha256": "a9a02ebf22e2703c9d9563ad80639ba0700b7f19f99f9f16dfd7125066c63f41",
+      "english_words": 144
+    },
+    {
+      "id": "eee-4714:021",
+      "source_sha256": "a21ada73abefb67899a5f1fe6b4a1e2bc41409c62f709bab414c8c37e78d877b",
+      "translation_sha256": "fb5572df95542ebb113a9204952adaf4ac41259f265fc10d2ae852b53c9eac0c",
+      "english_words": 115
+    },
+    {
+      "id": "eee-4714:022",
+      "source_sha256": "52c585583d15c1988c060b66c9f2d36112c6f4beeb9ba1783bf571825d8a3d47",
+      "translation_sha256": "2068240943606ef9a743fc04331e7d6348574bc5f73cfe277c603f5aad65725c",
+      "english_words": 130
+    },
+    {
+      "id": "eee-4714:023",
+      "source_sha256": "abfaa9d914cbd416e499d5d52dd58e0ce6a8ee9b75d280afc2dff4404afbd3e4",
+      "translation_sha256": "84f8b702ff1d64f832ad146aa06388a6fd63173994c11fa31d8841208ccd6267",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:024",
+      "source_sha256": "6f19c0fce64f91f298353fff1ed751c6ec469fd1848d097c50b1877c0a062350",
+      "translation_sha256": "5d0221ce4f00edceb319d1f96447f4d38b766e9b0118d969e9775c58509de3c2",
+      "english_words": 11
+    },
+    {
+      "id": "eee-4714:025",
+      "source_sha256": "2c8e9088a51c0e639402fc2ac7a189947ad1d182798f7f1944a95e2ee0bada03",
+      "translation_sha256": "818d52ee6914ed4a5341dbc628123789591d2fe135b7b3613633f0eaa6ed5dec",
+      "english_words": 133
+    },
+    {
+      "id": "eee-4714:026",
+      "source_sha256": "fa04598b7fb2ec4a76d3eca6609c6fff94dd733412ab7d938fa05f566ae8be92",
+      "translation_sha256": "f0f63d7f8e4f79ed35b2294cc720109d1583caca3ff135082d5159b927e6de84",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:027",
+      "source_sha256": "1bb877709fa791c85f4a93136401841d560756188f4fbb419dece7fbfacae107",
+      "translation_sha256": "45e47acf96bec2f0c6af4f120acc1d7224c3cad39c09a5856ba0147bf458894c",
+      "english_words": 63
+    },
+    {
+      "id": "eee-4714:028",
+      "source_sha256": "ef7e6a8be9f1f83d78dd8be77624e41be851cc8ae42d83596613e2ef17225d7f",
+      "translation_sha256": "525111e1bab4d7f8a73b214fe4ceba8d5e26a2209b26a3d50d1af81740186615",
+      "english_words": 183
+    },
+    {
+      "id": "eee-4714:029",
+      "source_sha256": "16b5c8eb0407b25164aae97af64e1864f2a8d896d964a2228a0d31a25a01768b",
+      "translation_sha256": "4e194c81060eb6581468733cb738f376227726e26b49873956a73f5c751cee17",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:030",
+      "source_sha256": "09ed035113b71d051a4399a99fe86e7da95fb469d6c1bb8e01801b209b1bb3d8",
+      "translation_sha256": "03d3e60f56b848a54b325a3c95f93900e2ac44493df822a3053fed003c825285",
+      "english_words": 53
+    },
+    {
+      "id": "eee-4714:031",
+      "source_sha256": "aacf846e237462a839a6fff88007ee6daa2be2b7d6372e46f981e7d22f332f89",
+      "translation_sha256": "9f0d3fae53b803a91623d6a54a70887b0042ba8f932ab1542331ab783463673a",
+      "english_words": 137
+    },
+    {
+      "id": "eee-4714:032",
+      "source_sha256": "46fd9aa8c5976f14d07df6f5a9c828efa2767842ed29bc08c7a9b6b564e04345",
+      "translation_sha256": "e94fa48a6bb0e68c58a925f90db856a3b597506f9afc7cea4461dd740db83879",
+      "english_words": 233
+    },
+    {
+      "id": "eee-4714:033",
+      "source_sha256": "047a795816918f1ee38dbd77af32f14cf51fa4e422af882a25f0302ebe28f6ab",
+      "translation_sha256": "b5232830e58521908c070a5d8bd7045ee699a8c2c8739b65e002cf2dca0394e0",
+      "english_words": 130
+    },
+    {
+      "id": "eee-4714:034",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:035",
+      "source_sha256": "cf5998ca5ff66679a07d734436f41bafc4800a07a6f5caa09e517f88fce36ef7",
+      "translation_sha256": "3eba93b68262245cc5c0551753e71551880fe53b2ca34b88286201079d451e81",
+      "english_words": 114
+    },
+    {
+      "id": "eee-4714:036",
+      "source_sha256": "2550decc1498c722988e975a001a9c23f11dcc21548500df31312a9ed3fab8e5",
+      "translation_sha256": "9d56f3d4fca0ffdfd3b42fdbe8671536d73f23466f614b3583318f85f9029905",
+      "english_words": 261
+    },
+    {
+      "id": "eee-4714:037",
+      "source_sha256": "287d88d19163eb61e78d0f41245b199ece41e0ab0f06d90de8e9dfc9eb8ac5bd",
+      "translation_sha256": "1628915e8d4a3acc2bb7c55cff79eeea66da28dffecbae5f72644717c23c9d0f",
+      "english_words": 143
+    },
+    {
+      "id": "eee-4714:038",
+      "source_sha256": "a8ab6f0fa2d4803e711ee4c9f83178e1e3acc92e62e52b673b5073d7413ef70b",
+      "translation_sha256": "b528b86e64fd261f914737e5bb35073d2a6977fe2c1befa68455e36c2e4b98b0",
+      "english_words": 89
+    },
+    {
+      "id": "eee-4714:039",
+      "source_sha256": "eab77ba5e9a5573929e57247ce77b4d28fe1306790373425d6b93a2999e350c1",
+      "translation_sha256": "473b96352a80c04f53fd3875675ebc742d1d226c742c0566c2a51b4dc2a7796e",
+      "english_words": 87
+    },
+    {
+      "id": "eee-4714:040",
+      "source_sha256": "ac9a945c651deca723ab1b714a0dd041faad938678e16e36461165ff9cafd4d2",
+      "translation_sha256": "94b2af08b8ac8aeb025e991777316449168275acd3806ebb5e08dde28c40b387",
+      "english_words": 168
+    },
+    {
+      "id": "eee-4714:041",
+      "source_sha256": "6a787823f8b55b44b720bf695d0ffeb7f0721f6f9a1a30e3ca96064f56db07d8",
+      "translation_sha256": "abd9b62a425990b05416577f2d7c3f65acd42d699c9de85ef96f72b92a13a22d",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:042",
+      "source_sha256": "cedf0c787c999c95b7b6b7a8c4b08276fa5ddaeb7f0c5962bb8f5d231a2b0d8d",
+      "translation_sha256": "1b744cd7d644719af48c45fd65bbbc6cb02bf053f53b54a625850d226cca650a",
+      "english_words": 55
+    },
+    {
+      "id": "eee-4714:043",
+      "source_sha256": "df88f0e5f3ef3b46a648e5176eff7a3ba893b5d4f32d7f9a4bbb79d523ba9481",
+      "translation_sha256": "808adb220f35c34e42530f337a41b4c63b7c2cb534c17026d42d1fc4366fe648",
+      "english_words": 35
+    },
+    {
+      "id": "eee-4714:044",
+      "source_sha256": "bd363c59a8b8706598a6dbec1c99a440fcd85adeb526d5203de64f11f1e1da89",
+      "translation_sha256": "eb7047398bd914e4d22e40b5d34033c66fbd6f0716c17b381641d2ac4eb6f1bc",
+      "english_words": 99
+    },
+    {
+      "id": "eee-4714:045",
+      "source_sha256": "4f6bc35e25a5bd432359efcfb52b5de7cc75e74295322d5aa7e75b6df9345d90",
+      "translation_sha256": "fb1ce59f2b7db6aa34a0ccc50c5c18695419d5efb0b95a21fd9beb166ac8a71d",
+      "english_words": 186
+    },
+    {
+      "id": "eee-4714:046",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:047",
+      "source_sha256": "4fb9daec61d4a8385a7f46dc5a87952e0f2f2c5ad1ca5c3d3135bf46a67ced3a",
+      "translation_sha256": "43bbb57fe27616b17afc5601a6e4d0dee1402dfc176fed352709cefdd1655920",
+      "english_words": 94
+    },
+    {
+      "id": "eee-4714:048",
+      "source_sha256": "fe9b9ddb03ad1562a1e62ee9e813942adf2f008cbf095223b80a2ce99df66be2",
+      "translation_sha256": "55de6b7319437a37e310461b5ea3131f13ef06774e073ee80936ffe0a0bbed85",
+      "english_words": 1
+    },
+    {
+      "id": "eee-4714:049",
+      "source_sha256": "980e1d62bf7f6f0fc0bf9570090bacd15115d39a42fe58cae6bcd802a8a7308f",
+      "translation_sha256": "39af4fe483dd758892a993b7e6542af38f921d448020a8a0e6e31e5720308d81",
+      "english_words": 127
+    },
+    {
+      "id": "eee-4714:050",
+      "source_sha256": "3ff554bc08803643709bfe0b24eb9fa58dc060504e5e644dd01da14ba1ad7f6d",
+      "translation_sha256": "d410bbde68120fe234d3e4de07a17704714ce6363743bb5db8f434a66569cb84",
+      "english_words": 103
+    },
+    {
+      "id": "eee-4714:051",
+      "source_sha256": "d4b04824bbf16a0d8d7532e56a9574bd46c5d5437a423b543dfae9c109505748",
+      "translation_sha256": "dcbc528d006e33ff5807e9e9bcbc91a2337912726587c9989cf9fcf7353c8afe",
+      "english_words": 108
+    },
+    {
+      "id": "eee-4714:052",
+      "source_sha256": "abbc63920e43e3039969b78465f8f8ec93d930a674d1140e666f65efa749a2ba",
+      "translation_sha256": "c62dafe8ea9476e01ceb48de97ac532902453bcfd31728ff4cd05d22505a67c6",
+      "english_words": 111
+    },
+    {
+      "id": "eee-4714:053",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:054",
+      "source_sha256": "de71da5c841171f00e273b09879d33117d7f960e15684fa75f99d7255d155971",
+      "translation_sha256": "768b27b4af221b204115c9efa55f6b26d28e5347e8439220940da2dc9043ea4e",
+      "english_words": 153
+    },
+    {
+      "id": "eee-4714:055",
+      "source_sha256": "eec113157bfd46475fd1a8e2eda7b2610b23d453b7c2798062e9d24bd919764b",
+      "translation_sha256": "5a3a6b2dad79bc51ca08fe2b2c40ed89e0111f380008b0463399826cfd9df281",
+      "english_words": 78
+    },
+    {
+      "id": "eee-4714:056",
+      "source_sha256": "f8d58df10076e2181f20bd9a1e20adc53f15285360bbb0ca70960bcaa1f1f0d5",
+      "translation_sha256": "81e7fbdbb82d368e9c46d3f7c0f63de354374876676b14421c47142bdf248a23",
+      "english_words": 56
+    },
+    {
+      "id": "eee-4714:057",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:058",
+      "source_sha256": "448c298ca04279968d050ea8eb58170e2488ec4f39ed19dfd1bcadd31da6312a",
+      "translation_sha256": "88396bca360d209c2c36166c842b2a4de96f4022447e3fe966b00ee1bf980fd5",
+      "english_words": 171
+    },
+    {
+      "id": "eee-4714:059",
+      "source_sha256": "961746b45de0c4068e729d58ab6df76b56087a0aeabc34570db0cdabd16e489b",
+      "translation_sha256": "aea67dc08c9da1273a9d1e7dc667db24869ad6f9d9e557c33fab9677dab7d18e",
+      "english_words": 113
+    },
+    {
+      "id": "eee-4714:060",
+      "source_sha256": "60e5e4fbfed8ece3cc9037ef6da8dfa2056032bca235fa73a4459112fdebd412",
+      "translation_sha256": "ac7ba5124ee1b0bc0a913c1648aa79cccbc4452041412bd9bb0b2c05281983bd",
+      "english_words": 159
+    },
+    {
+      "id": "eee-4714:061",
+      "source_sha256": "1a19f8d12b0b29ac014eadd9af01a7726319732990e3a2ef33e8ac8c695a7394",
+      "translation_sha256": "aacbc633c86dd8d20b09a2460aa0d713ceb98eeebeef3734037a41685389e047",
+      "english_words": 42
+    },
+    {
+      "id": "eee-4714:062",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:063",
+      "source_sha256": "66c43f960cbe2a8dc8863b81303392e1319e38b98a51b340fce74d2501f109f1",
+      "translation_sha256": "a33f2f80b7436a46396e25d3c22a80b777876e535b48cc9e2822e76b4d2db240",
+      "english_words": 60
+    },
+    {
+      "id": "eee-4714:064",
+      "source_sha256": "4452eba627bc9d84d39840192973f6d6cb99c81db7e44f39174ef0a86432a4c4",
+      "translation_sha256": "d71b1fd4881cfa579128cacf354e0892dcfaae4bd6bac23a9eda13358a940e12",
+      "english_words": 250
+    },
+    {
+      "id": "eee-4714:065",
+      "source_sha256": "70aa25a276f23e92de908a11452f8c7cdd9103280bfef7a2a37c0c22a62d5cd2",
+      "translation_sha256": "2818834b221bf0748c7bcf8f630e56728557b0b182514216674cc324ea5c9252",
+      "english_words": 38
+    },
+    {
+      "id": "eee-4714:066",
+      "source_sha256": "68e1edf107e27c1c4ffe3e8ce34539560f12fd36b08383de48beff76d4a89716",
+      "translation_sha256": "15aa3f63f3de00a29de1092e02ba16a8a5a07b9223ff2defd558bc3157b7255c",
+      "english_words": 11
+    },
+    {
+      "id": "eee-4714:067",
+      "source_sha256": "c37f332370973460bd1c539beb9d14ae4b549641a9764894ad989f32fbfe4df5",
+      "translation_sha256": "06dbec272ff1295292d064777c661ec8b3cb53824363e3a7e87059d8a0f398c7",
+      "english_words": 36
+    },
+    {
+      "id": "eee-4714:068",
+      "source_sha256": "4961326f59f84a9ad68c8ce709c72df5f7f9bd2edf0ab5d465d7a0c17be689de",
+      "translation_sha256": "685eb5139ac135336c441de37e7c83baff8f74963aba3014b6a5bb68c6ad77f9",
+      "english_words": 22
+    },
+    {
+      "id": "eee-4714:069",
+      "source_sha256": "c5eeb3b88cdf3ecf8034c604c79a5e2533d41f823af4e4900d80f306120cf189",
+      "translation_sha256": "049722f9025d2a764278358c5952802c17ecc46bb5d1de1b62b2ec9731eeb489",
+      "english_words": 38
+    },
+    {
+      "id": "eee-4714:070",
+      "source_sha256": "290b2fd4160202e6c46a43b083b44f359fdf8556f7a2b9f3ed6070dae4bbd76b",
+      "translation_sha256": "d29a737abe21ae9868601752a443cbe126b46b5c20ffd5facd6d49ddbca997f2",
+      "english_words": 36
+    },
+    {
+      "id": "eee-4714:071",
+      "source_sha256": "57c4d1bd99006bd7c27fd0e49f7946272369eee697429b117c27516f67c166e7",
+      "translation_sha256": "7ca66ae1235ccb19d6eceb0b0c7b2502c3058cd61570e5b42dedd17aef54f2a0",
+      "english_words": 45
+    },
+    {
+      "id": "eee-4714:072",
+      "source_sha256": "031a14e8f40c2f849b38c57ac5a33582cd2ce921a16dd92568054c42545c2c47",
+      "translation_sha256": "7c3696e5738c38228e221d467053fd3279fbd90d147b39b3c71738d7b9d62661",
+      "english_words": 24
+    },
+    {
+      "id": "eee-4714:073",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:074",
+      "source_sha256": "fbc4592c95221868a9763e04c96dd6875f14a36d1050edbb9f0d8045378d7871",
+      "translation_sha256": "d38218122c93d70b2ef5fb535268c690fe160d8aedae8aa148019dc08781cf7a",
+      "english_words": 81
+    },
+    {
+      "id": "eee-4714:075",
+      "source_sha256": "b86b54bac4f6087e0d189f6f42aaedd7eec8e133c0e9653556fad73db859177e",
+      "translation_sha256": "26a332169975a2e47a8cc20349127b37864312cbb493e46b234d343f911cb183",
+      "english_words": 30
+    },
+    {
+      "id": "eee-4714:076",
+      "source_sha256": "f9393706206a290e59b325fb5bdc326a1ceaae93d34d7c364650162786da18fc",
+      "translation_sha256": "2ae919faf6d1d9f81c36196c8b996fc771afc233d2f23409962c49a593fc91f1",
+      "english_words": 33
+    },
+    {
+      "id": "eee-4714:077",
+      "source_sha256": "f9d51e0d8bad66c683f89aae6a3ae90a2b7685fdd650b7349463f4942f2d4e32",
+      "translation_sha256": "c90be76c88092ae731840209d729129fff03633e3e4bb148938c5a68bf730e33",
+      "english_words": 679
+    },
+    {
+      "id": "eee-4714:078",
+      "source_sha256": "e07cd1544509e3c79d20b1775ea41debcbdc755de39feb1eb9a391b1e1f577ce",
+      "translation_sha256": "b02c60f553a3617a2ea4ad9ed8aa458a70dc7d11d73fbc788a3ce9604f40b106",
+      "english_words": 0
+    },
+    {
+      "id": "eee-4714:079",
+      "source_sha256": "8971e27d3241646d75337253522b1d7ce2616e748bdfe37ab57c21814b227564",
+      "translation_sha256": "a00ebab10aa44c477f0f840cdde093ca7a8e5db93dceb098c86bf163810bfce6",
+      "english_words": 309
+    },
+    {
+      "id": "eee-4714:080",
+      "source_sha256": "4a4ac72bc768a3ed829d521712fbe315003931ef79ad4078be2f5c17f66c17dd",
+      "translation_sha256": "0b6c1cc7942a96d364efebccb76fd009e4977bf8b15081bc309a9d0162267a70",
+      "english_words": 11
+    },
+    {
+      "id": "eee-4714:081",
+      "source_sha256": "0ee57f2b95a9a581d35692386c4342b83f8301be01c9e762b709937f9e4f713b",
+      "translation_sha256": "4d22900ecf227341562757743180e141ba2aa7d363b1924a34b877f029c96135",
+      "english_words": 104
+    },
+    {
+      "id": "eee-4714:082",
+      "source_sha256": "43a5b4e35d0dcf3fb81c50f151a5a1745f23609554b5efe9ff580c378a3eef4e",
+      "translation_sha256": "faf1e0cea7d86bbc3e66597d92e500214b1da49ab64a5209f3c3d692cb9fa6b6",
+      "english_words": 126
+    },
+    {
+      "id": "eee-4714:083",
+      "source_sha256": "274ce455d11dbc6158ebe5452432f01317ce04a086fc3b803a650d8551aa6602",
+      "translation_sha256": "b44f64be271afa41436d63fe530f409867f742d4a7fa8abda0ba783a6a262a05",
+      "english_words": 502
+    },
+    {
+      "id": "eee-4714:084",
+      "source_sha256": "1d69a461bf03e9a6d504aa48201426c4f60abf7291e195a540a5816ae196bc12",
+      "translation_sha256": "d8ccfa0b300ad312ba3086e074c4713743f1e213cd6e4db5346b9129760f14d7",
+      "english_words": 78
+    },
+    {
+      "id": "eee-4714:085",
+      "source_sha256": "266f9b7ebc470827e264cab8f06cd0d8a970a4e910f4a93762d641f5f7de1092",
+      "translation_sha256": "c9f17070951b425d6dc65f1c2ae78b75f96ceeaee8b9954c15bee82077c4e05b",
+      "english_words": 38
+    },
+    {
+      "id": "eee-4714:086",
+      "source_sha256": "ac27b820804e529c186ea3319ea4d59ef5a0a2cd1b74d2d9cabe520bfdb53e49",
+      "translation_sha256": "dec42063bb9ee673d81a7e18b5108e75e8e0aa8124bb10d3cc49f4957a789f4b",
+      "english_words": 24
+    },
+    {
+      "id": "eee-4714:087",
+      "source_sha256": "6d38c3932da4da49ed104a3a1d4d609d9efb27b4e04898698395babae74d3e81",
+      "translation_sha256": "8b840752da6cab0c5eeb82b8fedd60673db389d9e147d105790419e749897b06",
+      "english_words": 259
+    },
+    {
+      "id": "eee-4714:088",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:089",
+      "source_sha256": "4172f2bab608041369e3b2da2413aa2653484854efe5403442b26b8c6c5f7382",
+      "translation_sha256": "0592b164466f55f196332963fac444b23d125cd12b0c0f98b8eccc8a860314cc",
+      "english_words": 22
+    },
+    {
+      "id": "eee-4714:090",
+      "source_sha256": "f41010b5b1070c718595ee63657ae7dbce7c7e31e74860a2217e3bfb7f4f1e15",
+      "translation_sha256": "b4e4853c2e5d5c25eb807fbb74fba24e1d46297b2538533b91693f59ccd0ee67",
+      "english_words": 492
+    },
+    {
+      "id": "eee-4714:091",
+      "source_sha256": "74a627fb88c6a745940c2a92de082dea330972b7533181d99adc850ff723d6ac",
+      "translation_sha256": "b9796ab432d8b49f46a2bbae10044a7bd0acef4dbdc412b75c5c32813e6922b1",
+      "english_words": 23
+    },
+    {
+      "id": "eee-4714:092",
+      "source_sha256": "704397db3d9e22abaf018d24c0b90ad3a68d00bd920068a4b632f5dcfad70fad",
+      "translation_sha256": "0ac5eefeae059773402734ad66526a7a1fcbc729141af46197b930032f96ab6d",
+      "english_words": 30
+    },
+    {
+      "id": "eee-4714:093",
+      "source_sha256": "ce3b739ca6a0357b7fb160c770e0d47bd3bc01a6fb6ebaf0977239a66c7036d7",
+      "translation_sha256": "c554f35715faee91e9845abe2c8ce8fec0662ecd5f435d32ee62f6fd3d3c2709",
+      "english_words": 31
+    },
+    {
+      "id": "eee-4714:094",
+      "source_sha256": "80c29d33e7f7118cc9191d8684ed241df8cf1e1b41806b4d70adc5db01bb3613",
+      "translation_sha256": "8a7e6dc93e39ed03f9c8d6efedb6de814a315679d0e2d72678dbe312cf568e23",
+      "english_words": 13
+    },
+    {
+      "id": "eee-4714:095",
+      "source_sha256": "c5485bd5ff933465066f0e517d31a1b16c1361f97fa3b2b733f0b258704f654d",
+      "translation_sha256": "5cc81831a3955eec19f9f7114340aa5f01db45ab3e10ecaa7cea60dfa210544d",
+      "english_words": 31
+    },
+    {
+      "id": "eee-4714:096",
+      "source_sha256": "10c2e623de84342196070599da1bbbf99a3c727bd17b926619b2746c894e01b7",
+      "translation_sha256": "376c2507818dff73915e24939dad44ca52b83a7e95fd393f0952c5397b4c3581",
+      "english_words": 15
+    },
+    {
+      "id": "eee-4714:097",
+      "source_sha256": "658396e11f80869d39664b26fedc1eb7a11870465ab847800169a7ae116ffafd",
+      "translation_sha256": "b366e54dbeb883ae39960e6af332e8ced1cf604ffe05fae10c7a1e4089a6ca4e",
+      "english_words": 2
+    },
+    {
+      "id": "eee-4714:098",
+      "source_sha256": "6d83103f412394203d69304c2828e2c5a8b2d0138529f47015fbd56e910bb6da",
+      "translation_sha256": "29c387e9200847993759f44f09e752c7ae3c247c2b45514d3f5834d4e4d69b55",
+      "english_words": 150
+    },
+    {
+      "id": "eee-4714:099",
+      "source_sha256": "8abdd1ce586d94d304a57fa6af35c763e8914536f2a2a12a0a83d0f2cfae41a1",
+      "translation_sha256": "de598f9096c9f00ad246b81d96d0ea1ffcbe33ed91d6b443ebc6e988a4fe974e",
+      "english_words": 114
+    },
+    {
+      "id": "eee-4714:100",
+      "source_sha256": "2718818e16fbe39a8bc22a08c798a06a893e940ed11e8f8d274e207dae0d5a08",
+      "translation_sha256": "2104e1aa187621d754ee26bffd283a24127cd14b22fe90b7b277b0844518ff9b",
+      "english_words": 124
+    },
+    {
+      "id": "eee-4714:101",
+      "source_sha256": "49c1142e835f3806097deaa42cc7d66de35f633ec09f60aa474b44a0d43fc9b9",
+      "translation_sha256": "704bfa3b3eb53ad55d1f6f3db3015d84e065bdaae41113fbc3c0e9f3675883d7",
+      "english_words": 38
+    },
+    {
+      "id": "eee-4714:102",
+      "source_sha256": "efa016bde6b87c31eb67d1035ca3b50c4e495b56caa8afd137fc87b8752b029c",
+      "translation_sha256": "fc80e6ae3bd43ccb96704bf8d040745c4e37a14571a7f2de9343c983c4e70ce5",
+      "english_words": 721
+    }
+  ],
+  "primer_block_ids": [
+    "eee-4712:002",
+    "eee-4713:003",
+    "eee-4713:004",
+    "eee-4713:007",
+    "eee-4713:008",
+    "eee-4713:013",
+    "eee-4713:015",
+    "eee-4713:017",
+    "eee-4713:019",
+    "eee-4713:020",
+    "eee-4713:022",
+    "eee-4713:027",
+    "eee-4713:029",
+    "eee-4713:035",
+    "eee-4713:037",
+    "eee-4713:038",
+    "eee-4713:039",
+    "eee-4713:046",
+    "eee-4714:003",
+    "eee-4714:004",
+    "eee-4714:005",
+    "eee-4714:010",
+    "eee-4714:013",
+    "eee-4714:018",
+    "eee-4714:025",
+    "eee-4714:027",
+    "eee-4714:030",
+    "eee-4714:032",
+    "eee-4714:042",
+    "eee-4714:043",
+    "eee-4714:044",
+    "eee-4714:052",
+    "eee-4714:055",
+    "eee-4714:056",
+    "eee-4714:060",
+    "eee-4714:065",
+    "eee-4714:068",
+    "eee-4714:069",
+    "eee-4714:070",
+    "eee-4714:071",
+    "eee-4714:075",
+    "eee-4714:076",
+    "eee-4714:079",
+    "eee-4714:080",
+    "eee-4714:081",
+    "eee-4714:084",
+    "eee-4714:085",
+    "eee-4714:086",
+    "eee-4714:091",
+    "eee-4714:092",
+    "eee-4714:093",
+    "eee-4714:094",
+    "eee-4714:095",
+    "eee-4714:096",
+    "eee-4714:099",
+    "eee-4714:100",
+    "eee-4714:101"
+  ],
+  "canonical_quotation_ids": [
+    "eee-4713:003",
+    "eee-4713:019",
+    "eee-4714:003",
+    "eee-4714:004",
+    "eee-4714:042",
+    "eee-4714:043",
+    "eee-4714:079",
+    "eee-4714:091",
+    "eee-4714:093",
+    "eee-4714:095",
+    "eee-4714:099"
+  ],
+  "primer_gloss_ids": [
+    "eee-4713:014",
+    "eee-4713:016",
+    "eee-4714:045",
+    "eee-4714:061",
+    "eee-4714:066",
+    "eee-4714:067",
+    "eee-4714:072",
+    "eee-4714:082",
+    "eee-4714:087"
+  ],
+  "diagram_block_ids": [
+    "eee-4713:002",
+    "eee-4714:009",
+    "eee-4714:012",
+    "eee-4714:016",
+    "eee-4714:023",
+    "eee-4714:026",
+    "eee-4714:029",
+    "eee-4714:041",
+    "eee-4714:078"
+  ],
+  "diagram_caption_ids": [
+    "eee-4714:009",
+    "eee-4714:012",
+    "eee-4714:017",
+    "eee-4714:024"
+  ],
+  "title_ids": [
+    "eee-4712:001",
+    "eee-4713:001",
+    "eee-4714:001"
+  ],
+  "date_id": "eee-4712:003",
+  "source_images": [
+    {
+      "path": "../assets/eee-learning/922f55954065-loshu.png",
+      "sha256": "b9a07ef11ab8906f87053861481a7501d325945a24f9e120ea6b85892fa03c94"
+    },
+    {
+      "path": "../assets/eee-learning/19e8dab3dd1d-hertu.png",
+      "sha256": "7ea27c1feaa8d66b32d8f88aeae42b3a737a26e27acd989a55fa319adc4fc3f8"
+    },
+    {
+      "path": "../assets/eee-learning/56b2a1caaa05-yitaichi.png",
+      "sha256": "cb54a1337e14a03c251fe465c9479246cafd8d9e3122982f5d7bf0c4e71e889f"
+    },
+    {
+      "path": "../assets/eee-learning/8e8815022481-yi-lianyi.png",
+      "sha256": "f2a3c21942a655e610f256dd084a84405faea124284a007fb018444e14b09857"
+    },
+    {
+      "path": "../assets/eee-learning/fc0af1c6b4ae-yi-4shun2.png",
+      "sha256": "ccf3db6ebb9162cc095e12dcd3708d1863ba23c84eb40cbae4fd2e6e86da4239"
+    },
+    {
+      "path": "../assets/eee-learning/0600718f74a5-yi-4shun.png",
+      "sha256": "6a190f9b6854210a36a358f7806cd5a4d797efdc3c3087273edfda692c9816f4"
+    },
+    {
+      "path": "../assets/eee-learning/1797b88c37ec-yi-8gua.png",
+      "sha256": "b9ffbfce79833fa60cc25caab41e992179378901b4ccd67beca0c694cc914f0e"
+    },
+    {
+      "path": "../assets/eee-learning/fad1272e00b8-yi-4grams.png",
+      "sha256": "82843314551fbab9a60d2fc91ce62862f1351793951460e3e2709f84f3ecc4fe"
+    },
+    {
+      "path": "../assets/eee-learning/63207390d3b2-yi-5grams.png",
+      "sha256": "41285841abdc0880046a7d6ca5d390a07e01c9d2d9c514ded4f2fb62a1ad5d93"
+    },
+    {
+      "path": "../assets/eee-learning/f2862795e15b-fushi-8gua.png",
+      "sha256": "2b66e2e6afe3cd332c3ddd901869ef5b96254a4ba4ec45d18266bd0d46bfa569"
+    },
+    {
+      "path": "../assets/eee-learning/c996ba7c148a-wenwan8gua.png",
+      "sha256": "5c25e26697620db1798c0f7d5649c815a51726469025dfc24f60fa4eab12ffd5"
+    }
+  ],
+  "embedded_preface_included": true,
+  "word_count_method": "Latin-letter tokens, including apostrophized and hyphenated forms, within source-aligned translated blocks; image markup and endnote references excluded. Includes source titles, captions and attribution labels; excludes added navigation headings, project front matter and endnotes. Canonical quotation blocks are a subset of the 57 primer passages, not new Wings.",
+  "collation": {
+    "type": "selective transcription comparison, all base-image inspection, and selected historical page-image checks",
+    "base": "YiXueWang",
+    "parallel": "Wikisource, Siku Quanshu transcription, Juan Nineteen",
+    "url": "https://zh.wikisource.org/w/index.php?title=御纂周易折中_(四庫全書本)/卷19&oldid=759596",
+    "accessed": "2026-09-26",
+    "facsimile_leaf_by_leaf_collation": false,
+    "parallel_witness_archived_in_repository": false,
+    "local_parallel_html_sha256": "31bec902425f6c596391eb1c544132746397879eeb19e37b8a0f860507b04b23",
+    "limitations": "The parallel transcription omits substantial material on diagram pages; no claim of complete bilateral textual collation is made.",
+    "selected_page_images": [
+      {
+        "url": "https://www.eee-learning.com/eeebook/middleyi/1937.png",
+        "sha256": "c7d0e55c5a4817bc51acd854f14a60382234402b817503d62ae46aa1e31ac2bb"
+      },
+      {
+        "url": "https://www.eee-learning.com/eeebook/middleyi/1939.png",
+        "sha256": "b14b488584e8038571b845c4309fcba476c5aae6ee21366ec297ecd143010580"
+      },
+      {
+        "url": "https://www.eee-learning.com/eeebook/middleyi/1940.png",
+        "sha256": "992ba595428deddb6df8562cd9fe8cfba2bd9aaed7942448ab7f5f36f4e22027"
+      }
+    ],
+    "supplementary_passages": [],
+    "additional_references": [
+      "https://zh.wikisource.org/wiki/欽定古今圖書集成/理學彙編/字學典/第110卷",
+      "source/juan-13.md",
+      "translation/juan-17.md"
+    ],
+    "decisions": [
+      {
+        "source_block": "eee-4714:022",
+        "reading": "Restore 發但說中間 after 先儒未曾",
+        "basis": "Historical page image 1940; the parallel web transcription omits this passage.",
+        "endnote": "j19-missing-words"
+      },
+      {
+        "source_block": "eee-4714:036",
+        "reading": "Restore Earlier Heaven for generation and Later Heaven for interpretation of completed figures",
+        "basis": "Parallel Siku transcription; labels reversed in base.",
+        "endnote": "j19-earlier-later-repair"
+      },
+      {
+        "source_block": "eee-4714:083",
+        "reading": "乾在西方 → 乾在西北",
+        "basis": "Parallel Siku transcription and the base King Wen diagram.",
+        "endnote": "j19-later-directions"
+      }
+    ]
+  },
+  "review": {
+    "independent_bilingual_review": false,
+    "automated_validation_scope": "Ordered source coverage; primer text versus its quotations, glosses, titles, date and diagrams; reading divisions; roles; notes; local image identities and hashes; word counts and checksums. Not proof of semantic accuracy or literary quality.",
+    "arithmetic_checks": {
+      "representation": "bottom-to-top; 1 yang, 0 yin",
+      "four_line_overlaps": [
+        1,
+        2,
+        23,
+        24,
+        27,
+        28,
+        37,
+        38,
+        39,
+        40,
+        43,
+        44,
+        53,
+        54,
+        63,
+        64
+      ],
+      "five_line_overlaps": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        8,
+        13,
+        14,
+        19,
+        20,
+        23,
+        24,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        41,
+        42,
+        43,
+        44,
+        49,
+        50,
+        55,
+        56,
+        59,
+        60,
+        61,
+        62
+      ],
+      "sector_strokes": {
+        "乾": {
+          "yang": 36,
+          "yin": 12
+        },
+        "坤": {
+          "yang": 12,
+          "yin": 36
+        },
+        "震": {
+          "yang": 20,
+          "yin": 28
+        },
+        "巽": {
+          "yang": 28,
+          "yin": 20
+        },
+        "坎": {
+          "yang": 20,
+          "yin": 28
+        },
+        "離": {
+          "yang": 28,
+          "yin": 20
+        },
+        "艮": {
+          "yang": 20,
+          "yin": 28
+        },
+        "兌": {
+          "yang": 28,
+          "yin": 20
+        }
+      },
+      "half_circle_yang_totals": [
+        112,
+        80
+      ],
+      "luo_line_totals": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "powers": {
+        "6": 64,
+        "7": 128,
+        "8": 256,
+        "9": 512,
+        "10": 1024,
+        "11": 2048,
+        "12": 4096,
+        "24": 16777216
+      },
+      "scope": "Internal arithmetic and combinatorial checks; not proof of historical transmission or divinatory efficacy."
+    }
+  }
+}

@@ -44,6 +44,9 @@ def shuogua_summary_number(original: str):
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'learning_primer':
+        excluded = {'易學啓蒙', '本圖書第一', '原卦畫第二', '淳熙丙午暮春既望', '兩儀生四象', '四象生八卦'}
+        return original.startswith('**') and '![' not in original and original.replace('**', '').strip() not in excluded
     if kind == 'sequence_miscellaneous':
         return original.startswith('**') and original not in {'**序卦傳**', '**雜卦傳**'}
     if kind == 'trigram_discussion':
@@ -59,17 +62,25 @@ def primary_source_block(original: str, kind: str) -> bool:
         return original.startswith('**') and re.fullmatch(r'\*\*[彖象][上下]傳\*\*', original) is None
     return original.startswith('**') and '，' in original.split('**')[1]
 
+def primer_canonical_quotation(original: str) -> bool:
+    text = re.sub(r'[^\u3400-\u9fff]', '', original)
+    prefixes = ('易大傳曰河出圖', '天一地二', '古者包羲氏', '易有太極是生兩儀',
+                '天地定位山澤通氣', '雷以動之', '帝出乎震', '乾健也坤順也',
+                '乾為馬坤為牛', '乾為首坤為腹', '乾天也故稱乎父')
+    return primary_source_block(original, 'learning_primer') and text.startswith(prefixes)
+
 def validate(juan: str = '01') -> dict:
     require(re.fullmatch(r'\d{2}', juan) is not None, 'Juan must have two digits')
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous', 'learning_primer'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
     is_wenyan = kind == 'wenyan_commentary'
     is_shuogua = kind == 'trigram_discussion'
     is_sequence = kind == 'sequence_miscellaneous'
+    is_primer = kind == 'learning_primer'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -97,16 +108,18 @@ def validate(juan: str = '01') -> dict:
         require(bool(translated.strip()), f'{identifier}: empty translation')
         require(words(translated) == record['english_words'], f'{identifier}: word count differs')
         is_primary = primary_source_block(original, kind)
-        require(translated.startswith('### ') == is_primary, f'{identifier}: primary text alignment differs')
+        translated_primary = translated.startswith(('**Primer text', '**Primer quotation', '**Primer Preface')) if is_primer else translated.startswith('### ')
+        require(translated_primary == is_primary, f'{identifier}: primary text alignment differs')
         for cn_label, en_label in roles:
             if original.startswith(cn_label):
                 require(translated.startswith(en_label), f'{identifier}: commentator attribution mismatch')
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages'}.get(kind, 'oracle_statements')
-    require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
-    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence else 'hexagrams'
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages', 'learning_primer':'primer_passages'}.get(kind, 'oracle_statements')
+    translated_primary_count = sum(t.startswith(('**Primer text', '**Primer quotation', '**Primer Preface')) for _, t in pairs) if is_primer else len(re.findall(r'^### ', main, re.M))
+    require(translated_primary_count == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
+    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence or is_primer else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
@@ -235,7 +248,54 @@ def validate(juan: str = '01') -> dict:
             require(english.count(f'<a id="{division["anchor"]}"></a>') == 1, 'Reading division anchor missing or duplicated')
             covered.extend(selected)
         require(covered == ids, 'Unaccounted blocks outside reading divisions')
-    primary_check = ('All Sequence and Miscellaneous passages present; both Wings, source headings and reading divisions aligned' if is_sequence else
+    if is_primer:
+        translated_map = dict(pairs)
+        require(not re.search(r'^### ', main, re.M), 'Primer mislabeled as new canonical passages')
+        require('⟦PARA⟧' not in english, 'Unexpanded paragraph marker')
+        require([i for i in ids if primary_source_block(originals[i], kind)] == manifest['primer_block_ids'], 'Primer body coverage differs')
+        canonical = [i for i in ids if primer_canonical_quotation(originals[i])]
+        require(canonical == manifest['canonical_quotation_ids'], 'Canonical quotation coverage differs')
+        require(len(canonical) == manifest['coverage']['canonical_quotation_blocks'], 'Canonical quotation count differs')
+        require(all(translated_map[i].startswith('**Primer quotation') for i in canonical), 'Canonical citation missing quotation label')
+        gloss_prefixes = ('曆法合二始', '州有九井', '以横圖觀之', '震始交陰而陽生，是說', '兌離以下更思之', '○\u3000今按，兌離', '此更宜思', '此言文王改易', '嘗考此圖而更為之說')
+        glosses = [i for i in ids if originals[i].startswith(gloss_prefixes)]
+        require(glosses == manifest['primer_gloss_ids'] and len(glosses) == manifest['coverage']['primer_gloss_blocks'], 'Primer gloss coverage differs')
+        require(all(translated_map[i].startswith('**Primer gloss') for i in glosses), 'Primer gloss misattributed')
+        diagram_ids = [i for i in ids if re.search(image_pattern, originals[i])]
+        require(diagram_ids == manifest['diagram_block_ids'] and len(diagram_ids) == manifest['coverage']['diagram_blocks'], 'Diagram blocks differ')
+        require(len(english_images) == manifest['coverage']['diagram_images'] == len(manifest['source_images']), 'Diagram image count differs')
+        for image, item in zip(english_images, manifest['source_images']):
+            require(image == item['path'], 'Diagram manifest order differs')
+            require(hashlib.sha256((target.parent/image).read_bytes()).hexdigest() == item['sha256'], 'Diagram bytes changed')
+        caption_texts = {'易有太極', '是生兩儀', '兩儀生四象', '四象生八卦'}
+        captions = [i for i in ids if re.sub(image_pattern, '', originals[i]).replace('**', '').strip() in caption_texts]
+        require(captions == manifest['diagram_caption_ids'] and len(captions) == manifest['coverage']['diagram_caption_blocks'], 'Diagram captions differ')
+        require(all('**Diagram caption.**' in translated_map[i] for i in captions), 'Diagram caption not translated')
+        title_texts = ['易學啓蒙', '本圖書第一', '原卦畫第二']
+        titles = [i for i in ids if originals[i].replace('**', '') in title_texts]
+        require(titles == manifest['title_ids'], 'Primer source titles differ')
+        require([originals[i].replace('**', '') for i in titles] == title_texts, 'Primer part order differs')
+        require(manifest['coverage']['parts'] == 2 and manifest['embedded_preface_included'], 'Primer scope differs')
+        date_id = manifest['date_id']
+        require(originals[date_id] == '**淳熙丙午暮春既望**' and translated_map[date_id].startswith('**Date.**'), 'Primer date omitted or mislabeled')
+        locations = {identifier:index for index,identifier in enumerate(ids)}
+        covered = []
+        for division in manifest['reading_divisions']:
+            start,end = locations[division['start_id']],locations[division['end_id']]+1
+            require(start == len(covered) and end > start, 'Primer reading division gap or overlap')
+            selected = ids[start:end]
+            require(len(selected) == division['blocks'], 'Primer division block count differs')
+            require(sum(primary_source_block(originals[i], kind) for i in selected) == division['primer_passages'], 'Primer division passage count differs')
+            require(sum(words(translated_map[i]) for i in selected) == division['english_words'], 'Primer division word count differs')
+            require(english.count(f'<a id="{division["anchor"]}"></a>') == 1, 'Primer navigation anchor missing or duplicated')
+            covered.extend(selected)
+        require(covered == ids, 'Unaccounted primer blocks')
+        require(all(english.count(f'<a id="eee-{page}"></a>') == 1 for page,_ in source_pages), 'Primer page anchor missing')
+        for i in ids:
+            if originals[i].startswith('【附錄】'):
+                require(translated_map[i].startswith('**Supplement.**'), 'Source supplement mislabeled')
+    primary_check = ('All primer passages, embedded quotations, glosses, titles, captions and diagrams present and distinguished' if is_primer else
+                     'All Sequence and Miscellaneous passages present; both Wings, source headings and reading divisions aligned' if is_sequence else
                      'All Shuogua passages and eleven chapter divisions present; source summaries distinguished from the supplementary summary' if is_shuogua else
                      'All Wenyan passages and section summaries present and distinguished' if is_wenyan else
                      'All Appended Statements passages, chapter summaries and divisions present and distinguished' if is_appended else
