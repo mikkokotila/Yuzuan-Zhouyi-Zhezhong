@@ -38,6 +38,8 @@ def appended_summary_number(original: str):
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind == 'wenyan_commentary':
+        return original.startswith('**') and original != '**文言傳**'
     if kind == 'appended_statements':
         return (original.startswith('**') and appended_summary_number(original) is None
                 and not re.fullmatch(r'\*\*繫辭[上下]傳\*\*', original)
@@ -51,9 +53,10 @@ def validate(juan: str = '01') -> dict:
     manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary'}, 'Unsupported translation text kind')
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
+    is_wenyan = kind == 'wenyan_commentary'
     source = (ROOT / manifest['source']).read_text(encoding='utf-8')
     target = ROOT / manifest['translation']
     english = target.read_text(encoding='utf-8')
@@ -88,9 +91,9 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages'}.get(kind, 'oracle_statements')
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages'}.get(kind, 'oracle_statements')
     require(len(re.findall(r'^### ', main, re.M)) == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
-    page_key = 'source_pages' if is_tuan or is_appended else 'hexagrams'
+    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
@@ -142,13 +145,40 @@ def validate(juan: str = '01') -> dict:
         require(len(summary_ids) == manifest['coverage']['chapter_summaries'] == len(manifest['chapters']), 'Chapter-summary count differs')
         translated_map = dict(pairs)
         require(all(translated_map[i].startswith('**Original Meaning — Chapter Summary.**') for i in summary_ids), 'Chapter summary mislabeled as canonical text')
+    if is_wenyan:
+        source_summaries = [i for i in ids if re.search(r'此(?:第[一二三四五六]+節|以上申)', originals[i])]
+        embedded = [i for i in source_summaries if originals[i].startswith('【本義】')]
+        require(source_summaries == manifest['summary_blocks'], 'Wenyan section summaries differ')
+        require(embedded == manifest['embedded_summary_blocks'], 'Embedded Wenyan summaries differ')
+        require(len(source_summaries) == manifest['coverage']['section_summaries'], 'Wenyan summary count differs')
+        translated_map = dict(pairs)
+        for identifier in source_summaries:
+            expected = '**Section Summary.**' if identifier in embedded else '**Original Meaning — Section Summary.**'
+            require(expected in translated_map[identifier], 'Wenyan summary missing its commentary label')
+        require([section['hexagram'] for section in manifest['sections']] == [1, 2], 'Wenyan hexagram order differs')
+        for section in manifest['sections']:
+            prefix = f"eee-{section['page']}:"
+            page_ids = [i for i in ids if i.startswith(prefix)]
+            actual_primary = [int(i.rsplit(':', 1)[1]) for i in page_ids if primary_source_block(originals[i], kind)]
+            require(actual_primary == section['primary_block_numbers'], 'Wenyan primary-block indices differ')
+            require(len(actual_primary) == section['wenyan_passages'], 'Wenyan page primary count differs')
+            require([i for i in source_summaries if i.startswith(prefix)] == section['summary_ids'], 'Wenyan page summaries differ')
+            require(english.count(f'<a id="eee-{section["page"]}"></a>') == 1, 'Wenyan source-page anchor missing or duplicated')
+        for identifier in ids:
+            if originals[identifier].startswith('【附錄】'):
+                require(translated_map[identifier].startswith('**Supplement.**'), 'Source supplement mislabeled')
+    primary_check = ('All Wenyan passages and section summaries present and distinguished' if is_wenyan else
+                     'All Appended Statements passages, chapter summaries and divisions present and distinguished' if is_appended else
+                     'All Great and Small Image passages present and aligned' if kind == 'image_commentary' else
+                     'All Tuan passages and hexagram sections present and aligned' if is_tuan else
+                     'All oracle statements present and aligned')
     return {
         'status': 'passed', 'translation': manifest['translation'],
         'translation_sha256': sha(english), 'source_sha256': sha(source),
         **manifest['coverage'], 'local_images': len(english_images),
         'checks': ['Source unchanged', 'All source blocks represented once and in order',
                    'Commentarial role labels aligned',
-                   ('All Appended Statements passages, chapter summaries and divisions present and distinguished' if is_appended else ('All Great and Small Image passages present and aligned' if kind == 'image_commentary' else ('All Tuan passages and hexagram sections present and aligned' if is_tuan else 'All oracle statements present and aligned'))),
+                   primary_check,
                    'All endnote references resolved', 'Source images retained in order',
                    'Block-level and file-level checksums verified', 'Word counts recomputed'],
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'

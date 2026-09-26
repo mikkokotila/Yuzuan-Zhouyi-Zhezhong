@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-16.md",
+  "translation_sha256": "065be3319c4734300b4281f184cebff80b9449c6e5d2341756e2ac00a87b7f04",
+  "source_sha256": "ecdadf6b388f6526c0e0c28b51d7d7345b3a3b9dc863303e59fe3fabc0b09a61",
+  "hexagrams": 2,
+  "source_pages": 2,
+  "source_blocks": 353,
+  "wenyan_passages": 48,
+  "section_summaries": 8,
+  "endnotes": 60,
+  "main_text_english_words": 18496,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All Wenyan passages and section summaries present and distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
