@@ -13,6 +13,7 @@ import sys
 import validate_primer_charts as primer_charts
 import validate_primer_supplement as primer_supplement
 import validate_sequence_explication as sequence_explication
+import validate_remaining_material as remaining_material
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -47,6 +48,8 @@ def shuogua_summary_number(original: str):
 
 def primary_source_block(original: str, kind: str) -> bool:
     """Identify primary passages from the Chinese, not from the English manifest."""
+    if kind in {'front_matter','preliminary_juan'}:
+        return False
     if kind == 'sequence_explication':
         return False
     if kind == 'primer_supplement':
@@ -79,11 +82,13 @@ def primer_canonical_quotation(original: str) -> bool:
     return primary_source_block(original, 'learning_primer') and text.startswith(prefixes)
 
 def validate(juan: str = '01') -> dict:
-    require(re.fullmatch(r'\d{2}', juan) is not None, 'Juan must have two digits')
-    manifest_path = ROOT / f'provenance/translation-juan-{juan}.json'
+    require(juan=='front-matter' or re.fullmatch(r'\d{2}', juan) is not None, 'Use a two-digit juan or front-matter')
+    stem = 'translation-front-matter' if juan=='front-matter' else f'translation-juan-{juan}'
+    manifest_path = ROOT / 'provenance' / (stem+'.json')
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     kind = manifest.get('text_kind', 'hexagram_oracles')
-    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous', 'learning_primer', 'learning_primer_divination', 'primer_supplement', 'sequence_explication'}, 'Unsupported translation text kind')
+    require(kind in {'hexagram_oracles', 'tuan_commentary', 'image_commentary', 'appended_statements', 'wenyan_commentary', 'trigram_discussion', 'sequence_miscellaneous', 'learning_primer', 'learning_primer_divination', 'primer_supplement', 'sequence_explication', 'front_matter', 'preliminary_juan'}, 'Unsupported translation text kind')
+    is_remaining = kind in {'front_matter','preliminary_juan'}
     is_tuan = kind == 'tuan_commentary'
     is_appended = kind == 'appended_statements'
     is_wenyan = kind == 'wenyan_commentary'
@@ -128,10 +133,10 @@ def validate(juan: str = '01') -> dict:
     main = '\n\n'.join(text for _, text in pairs)
     require(sum(words(text) for _, text in pairs) == manifest['coverage']['main_text_english_words'], 'Total word count differs')
     primary_count = sum(primary_source_block(b, kind) for b in originals.values())
-    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages', 'learning_primer':'primer_passages', 'learning_primer_divination':'primer_passages', 'primer_supplement':'canonical_passages', 'sequence_explication':'canonical_passages'}.get(kind, 'oracle_statements')
+    count_key = {'image_commentary':'image_passages', 'tuan_commentary':'tuan_passages', 'appended_statements':'appended_passages', 'wenyan_commentary':'wenyan_passages', 'trigram_discussion':'shuogua_passages', 'sequence_miscellaneous':'canonical_passages', 'learning_primer':'primer_passages', 'learning_primer_divination':'primer_passages', 'primer_supplement':'canonical_passages', 'sequence_explication':'canonical_passages', 'front_matter':'canonical_passages', 'preliminary_juan':'canonical_passages'}.get(kind, 'oracle_statements')
     translated_primary_count = sum(t.startswith(('**Primer text', '**Primer quotation', '**Primer Preface')) for _, t in pairs) if is_primer else len(re.findall(r'^### ', main, re.M))
     require(translated_primary_count == primary_count == manifest['coverage'][count_key], 'Missing or extra primary passage')
-    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence or is_primer or is_supplement or is_explication else 'hexagrams'
+    page_key = 'source_pages' if is_tuan or is_appended or is_wenyan or is_shuogua or is_sequence or is_primer or is_supplement or is_explication or is_remaining else 'hexagrams'
     require(len(source_pages) == manifest['coverage'][page_key] == len(manifest['sections']), 'Source page count differs')
     require(not re.search(r'\b(?:TODO|TBD|TRANSLATION_PENDING)\b', english), 'Unresolved placeholder')
     refs = re.findall(r'\[\^([^\]]+)\]', main)
@@ -315,7 +320,10 @@ def validate(juan: str = '01') -> dict:
         mathematical_checks = primer_supplement.validate(manifest, originals, dict(pairs), english, target)
     if is_explication:
         explication_checks = sequence_explication.validate(manifest, originals, dict(pairs), target, english, words)
-    primary_check = ('All explanatory sections, quoted hexagrams, diagram keys and cyclic overlaps present and distinguished' if is_explication else
+    if is_remaining:
+        remaining_checks = remaining_material.validate(manifest, originals, dict(pairs), english, target, words)
+    primary_check = ('All front matter or preliminary material present; voices, registers, contents and governing-line entries distinguished' if is_remaining else
+                     'All explanatory sections, quoted hexagrams, diagram keys and cyclic overlaps present and distinguished' if is_explication else
                      'All supplementary sections, equations, trigram shifts and diagrams present and distinguished' if is_supplement else
                      'All casting rules and 32 transformation charts complete; every chart label and documented image correction verified' if is_primer20 else
                      'All primer passages, embedded quotations, glosses, titles, captions and diagrams present and distinguished' if is_primer else
@@ -338,13 +346,15 @@ def validate(juan: str = '01') -> dict:
                    'Block-level and file-level checksums verified', 'Word counts recomputed'],
         **({'mathematical_checks': mathematical_checks} if is_supplement else {}),
         **({'combinatorial_checks': explication_checks} if is_explication else {}),
+        **({'remaining_material_checks': remaining_checks} if is_remaining else {}),
         'scope': 'Structural coverage and integrity; not independent bilingual review or full facsimile collation.'
     }
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     available = sorted(p.stem.rsplit('-', 1)[-1] for p in (ROOT / 'provenance').glob('translation-juan-[0-9][0-9].json'))
-    parser.add_argument('--juan', default='01', choices=available + ['all'], help='Juan to validate (default: 01); use all for every manifest')
+    if (ROOT/'provenance/translation-front-matter.json').is_file(): available.insert(0,'front-matter')
+    parser.add_argument('--juan', default='01', choices=available + ['all'], help='Two-digit juan, front-matter, or all (default: 01)')
     parser.add_argument('--write-report', action='store_true', help='Write validated JSON reports to provenance/')
     args = parser.parse_args()
     try:
@@ -352,7 +362,8 @@ if __name__ == '__main__':
         reports = [validate(juan) for juan in selected]
         if args.write_report:
             for juan, report in zip(selected, reports):
-                path = ROOT / f'provenance/translation-juan-{juan}-validation.json'
+                stem = 'translation-front-matter' if juan=='front-matter' else f'translation-juan-{juan}'
+                path = ROOT / 'provenance' / (stem+'-validation.json')
                 path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         print(json.dumps(reports[0] if len(reports) == 1 else reports, ensure_ascii=False, indent=2))
     except (OSError, ValueError, KeyError) as error:

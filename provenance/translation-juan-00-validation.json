@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "translation": "translation/juan-00.md",
+  "translation_sha256": "d52eabab3bb761d6a5c0e93c00060e2dd562288266b4db66240d82384d6382f3",
+  "source_sha256": "0f2b90b5c2cf5c656bf398cd170b8d34982f018bb24e3e2fad7fb6118b871f0b",
+  "source_pages": 4,
+  "source_blocks": 132,
+  "canonical_passages": 0,
+  "source_headings": 9,
+  "endnotes": 39,
+  "main_text_english_words": 18833,
+  "guiding_chapters": 3,
+  "interpretive_categories": 5,
+  "source_descriptions": 3,
+  "source_summaries": 2,
+  "governing_line_entries": 64,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All front matter or preliminary material present; voices, registers, contents and governing-line entries distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "remaining_material_checks": {
+    "governing_line_entries": 64,
+    "relation_groups": 4,
+    "hexagrams_per_relation_group": 16,
+    "attributed_prose_blocks": 101,
+    "scope": "Internal coverage and polarity checks; not proof of interpretive judgments or historical transmission."
+  },
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}

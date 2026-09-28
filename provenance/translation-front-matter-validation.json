@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "translation": "translation/front-matter.md",
+  "translation_sha256": "55912c843de77666ca4b642760e4cf473c55ed6340433b5ef3e3a6460afb5b53",
+  "source_sha256": "668695d1e86185325a8ab75eba6f92f3f6107d74a2eda19cd2081c4ed051f2b9",
+  "source_pages": 6,
+  "source_blocks": 332,
+  "canonical_passages": 0,
+  "source_headings": 23,
+  "endnotes": 17,
+  "main_text_english_words": 3784,
+  "front_matter_sections": 6,
+  "contributor_entries": 50,
+  "cited_author_entries": 218,
+  "dynasty_headings": 10,
+  "editorial_articles": 8,
+  "contents_entries": 23,
+  "synopsis_fragments": 4,
+  "local_images": 0,
+  "checks": [
+    "Source unchanged",
+    "All source blocks represented once and in order",
+    "Commentarial role labels aligned",
+    "All front matter or preliminary material present; voices, registers, contents and governing-line entries distinguished",
+    "All endnote references resolved",
+    "Source images retained in order",
+    "Block-level and file-level checksums verified",
+    "Word counts recomputed"
+  ],
+  "remaining_material_checks": {
+    "contributors": 50,
+    "authorities": 218,
+    "editorial_articles": 8,
+    "contents_entries": 23,
+    "catalogue_fragments_joined": 4
+  },
+  "scope": "Structural coverage and integrity; not independent bilingual review or full facsimile collation."
+}
